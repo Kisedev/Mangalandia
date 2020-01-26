@@ -1,0 +1,8 @@
+Express API:
+https://expressjs.com/pt-br/api.html
+
+PUG Template:
+https://pugjs.org/api/getting-started.html
+
+Express Tutorial:
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website
