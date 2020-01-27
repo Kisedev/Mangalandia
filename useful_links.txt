@@ -6,3 +6,6 @@ https://pugjs.org/api/getting-started.html
 
 Express Tutorial:
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website
+
+Mongoose Docs:
+https://mongoosejs.com/docs/guide.html
