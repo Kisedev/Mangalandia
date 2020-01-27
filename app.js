@@ -9,6 +9,13 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var mongoose = require('mongoose');
+const mongoDB = "mongodb+srv://mangadmin:mangasword@kisesp-ui1cx.gcp.mongodb.net/test?retryWrites=true&w=majority"
+
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 // view engine setup
 // seta o path dos templates (views) e a engine pug 
 app.set('views', path.join(__dirname, 'views'));
