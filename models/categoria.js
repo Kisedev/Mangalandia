@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const categoriaSchema = new Schema({
     nome: {type: String, required: true, minlength: 3, maxlength: 20},
-    descricao: {type: String, required: true},
-    faixa_etaria: {type: Number, required: true}
+    descricao: {type: String},
+    classificacao: {type: Number}
 });
 
 // Virtual para url 

@@ -6,7 +6,6 @@ const mangaSchema = new Schema({
     sumario: {type: String, required: true},
     autor: {type: Schema.Types.ObjectId, ref: 'Autor', required: true},
     categoria: {type: Schema.Types.ObjectId, ref: 'Categoria', required: true},
-    genero: [{type: Schema.Types.ObjectId, ref: 'Genero'}],
     capitulo: [{type: Schema.Types.ObjectId, ref: 'MangaCap'}],
     avaliacao: [{type: Number, min: 0, max: 5}]
 });
