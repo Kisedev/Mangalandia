@@ -2,15 +2,14 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const generoSchema = new Schema({
-    nome: {type: String, required: true, enum: ['Ação', 'Comédia', 'Drama', 'Fantasia', 'Ficção', 'Romance', 'Suspense', 'Terror', 'Nacional']},
+    nome: {type: String, required: true, minlength: 3, maxlength: 30},
 });
 
 // Virtual para url 
 generoSchema
 .virtual('url')
 .get(() => {
-    let lcs = this.nome.toLowerCase();
-    return `/catalogo/categoria/${lcs}`;
+    return `/catalogo/categoria/${this._id}`;
 });
 
 module.exports = mongoose.model('Genero', generoSchema);

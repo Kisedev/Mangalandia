@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const categoriaSchema = new Schema({
-    nome: {type: String, required: true, enum: ['Kodomo', 'Shounen', 'Shoujo', 'Hentai', 'Ecchi', 'Yaoi', 'Yuri', 'Gekigá', 'Seinen', 'Josei']},
-    desc: {type: String},
+    nome: {type: String, required: true, minlength: 3, maxlength: 20},
+    descricao: {type: String, required: true},
     faixa_etaria: {type: Number, required: true}
 });
 
@@ -11,7 +11,7 @@ const categoriaSchema = new Schema({
 categoriaSchema
 .virtual('url')
 .get(() => {
-    return `/catalogo/categoria/${this.nome}`;
+    return `/catalogo/categoria/${this._id}`;
 });
 
 module.exports = mongoose.model('Categoria', categoriaSchema);
