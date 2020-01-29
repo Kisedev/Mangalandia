@@ -3,13 +3,12 @@ const Schema = mongoose.Schema;
 
 const mangaSchema = new Schema({
     titulo: {type: String, required: true},
+    sumario: {type: String, required: true},
     autor: {type: Schema.Types.ObjectId, ref: 'Autor', required: true},
     categoria: {type: Schema.Types.ObjectId, ref: 'Categoria', required: true},
-    sumario: {type: String},
-    isbn: {type: String, required: true},
     genero: [{type: Schema.Types.ObjectId, ref: 'Genero'}],
-    capitulos: [{type: Schema.Types.ObjectId, ref: 'MangaCap', required: true}],
-    avaliacoes: [{type: Number, min: 0, max: 5}]
+    capitulo: [{type: Schema.Types.ObjectId, ref: 'MangaCap'}],
+    avaliacao: [{type: Number, min: 0, max: 5}]
 });
 
 // Virtual para URL 
@@ -23,7 +22,7 @@ mangaSchema
 mangaSchema
 .virtual('estrelas')
 .get(() => {
-    let media = Math.round(this.avaliacoes.reduce((soma, valor) => soma + valor, 0) / this.avaliacoes.length);
+    let media = Math.round(this.avaliacao.reduce((soma, valor) => soma + valor, 0) / this.avaliacao.length);
     if (isNaN(media)) {
         return;
     }

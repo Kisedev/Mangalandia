@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 const capituloSchema = new Schema({
     manga: {type: Schema.Types.ObjectId, ref: 'Manga', required: true},
-    nome: {type: String},
+    isbn: {type: String, required: true},
     vol: {type: Number, required: true},
-    lancamento: {type: Date, default: Date.now}
+    lancamento: {type: Date, default: Date.now},
+    nome: {type: String}
 });
 
 // Virtual para titulo
