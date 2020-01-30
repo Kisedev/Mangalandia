@@ -1,4 +1,4 @@
-console.log('Este script preenche com mongoose a sua db com alguns mangas, capitulos, autores, categorias e generos de teste. Conexao da db passada com argumento, por ex: mongodb+srv://mangadmin:mangasword@kisesp-ui1cx.gcp.mongodb.net/test?retryWrites=true&w=majority');
+console.log('Este script preenche com mongoose a sua db com alguns mangas, capitulos, autores e categorias  de teste. Conexao da db passada com argumento, por ex: mongodb+srv://mangadmin:mangasword@kisesp-ui1cx.gcp.mongodb.net/test?retryWrites=true&w=majority');
 
 // Get arguments passed on command line
 var userArgs = process.argv.slice(2);
@@ -12,7 +12,6 @@ var async = require('async')
 var Manga = require('./models/manga')
 var Autor = require('./models/autor')
 var Categoria = require('./models/categoria')
-var Genero = require('./models/genero')
 var MangaCap = require('./models/mangacap')
 
 
@@ -24,7 +23,6 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var autores = []
-var generos = []
 var categorias = []
 var mangas = []
 var mangacaps = []
@@ -144,19 +142,19 @@ function addMangas(cb) {
   async.parallel([
     function (callback) {
       addManga
-        ('Naruto', "Naruto Uzumaki é um menino que vive em Konohagakure no Sato ou simplesmente Konoha ou Vila Oculta da Folha, a vila ninja do País do Fogo. Quando ainda bebê, Naruto teve aprisionada em seu corpo a Kyuubi no Youko por Minato Namikaze (quarto Hokage, e seu pai), com a finalidade de salvar a Vila da Folha. Desde então, Naruto é visto por muitas pessoas como um monstro, não só pelos familiares das pessoas mortas pela Kyuubi, mas também por pessoas que não toleram suas brincadeiras, já que o mesmo é extremamente hiperativo, incompreendido e solitário. Naruto sonha em se tornar o Hokage de sua vila, um ninja poderoso e respeitado, para assim poder ser reconhecido por todos.", autores[0], [categorias[1],], callback);
+        ('Naruto', "Naruto Uzumaki é um menino que vive em Konohagakure no Sato ou simplesmente Konoha ou Vila Oculta da Folha, a vila ninja do País do Fogo. Quando ainda bebê, Naruto teve aprisionada em seu corpo a Kyuubi no Youko por Minato Namikaze (quarto Hokage, e seu pai), com a finalidade de salvar a Vila da Folha. Desde então, Naruto é visto por muitas pessoas como um monstro, não só pelos familiares das pessoas mortas pela Kyuubi, mas também por pessoas que não toleram suas brincadeiras, já que o mesmo é extremamente hiperativo, incompreendido e solitário. Naruto sonha em se tornar o Hokage de sua vila, um ninja poderoso e respeitado, para assim poder ser reconhecido por todos.", autores[0], [categorias[1]], callback);
     },
     function (callback) {
       addManga
-        ('Bleach', "A história conta com Kurosaki Ichigo como personagem principal. Após uma série de incidentes ele acaba se tornando um Shinigami, que são responsáveis pelo fluxo de almas do mundo real até a Soul Society, assim como combater os espíritos malígnos, Hollows. Porém, conforme ele começa a se envolver com o mundo espiritual, ele acaba no meio de uma trama que ameaça a existência de ambos os mundos.", autores[1], [categorias[1],], callback);
+        ('Bleach', "A história conta com Kurosaki Ichigo como personagem principal. Após uma série de incidentes ele acaba se tornando um Shinigami, que são responsáveis pelo fluxo de almas do mundo real até a Soul Society, assim como combater os espíritos malígnos, Hollows. Porém, conforme ele começa a se envolver com o mundo espiritual, ele acaba no meio de uma trama que ameaça a existência de ambos os mundos.", autores[1], [categorias[1]], callback);
     },
     function (callback) {
       addManga
-        ('Shingeki no Kyojin', "Várias centenas de anos atrás, os humanos quase foram exterminados por Titãs. Os Titãs têm vários andares de altura, parecem não ter inteligência, devoram seres humanos e, o pior de tudo, parecem fazer isso pelo prazer e não como fonte de alimento.Avancemos para o presente e a cidade não viu um Titã há mais de 100 anos. O adolescente Eren e sua irmã adotiva Mikasa testemunham algo terrível quando as muralhas da cidade são destruídas por um super Titã que surge de lugar nenhum. Enquanto os Titãs menores inundam a cidade, as duas crianças assistem horrorizadas sua mãe ser devorada viva!", autores[2], [categorias[1],], callback);
+        ('Shingeki no Kyojin', "Várias centenas de anos atrás, os humanos quase foram exterminados por Titãs. Os Titãs têm vários andares de altura, parecem não ter inteligência, devoram seres humanos e, o pior de tudo, parecem fazer isso pelo prazer e não como fonte de alimento.Avancemos para o presente e a cidade não viu um Titã há mais de 100 anos. O adolescente Eren e sua irmã adotiva Mikasa testemunham algo terrível quando as muralhas da cidade são destruídas por um super Titã que surge de lugar nenhum. Enquanto os Titãs menores inundam a cidade, as duas crianças assistem horrorizadas sua mãe ser devorada viva!", autores[2], [categorias[1]], callback);
     },
     function (callback) {
       addManga
-        ('Nanatsu no Taizai', 'Os "Sete Pecados Capitais", um grupo maligno de cavaleiros que conspiraram para derrubar o reino de Britânia, supostamente foram erradicados pelos Cavaleiros Divinos, embora ainda existam rumores de que eles estão vivos. Dez anos depois, os Cavaleiros Divinos realizaram um golpe de estado e assassinaram o rei, se tornando os novos e tiranos governantes do reino. Elizabeth, a única filha do rei, sai em uma jornada para encontrar os "Sete Pecados Capitais", e recrutá-los para que possam ajudar a tomar o reino de volta!!!', autores[3], [categorias[1],], callback);
+        ('Nanatsu no Taizai', 'Os "Sete Pecados Capitais", um grupo maligno de cavaleiros que conspiraram para derrubar o reino de Britânia, supostamente foram erradicados pelos Cavaleiros Divinos, embora ainda existam rumores de que eles estão vivos. Dez anos depois, os Cavaleiros Divinos realizaram um golpe de estado e assassinaram o rei, se tornando os novos e tiranos governantes do reino. Elizabeth, a única filha do rei, sai em uma jornada para encontrar os "Sete Pecados Capitais", e recrutá-los para que possam ajudar a tomar o reino de volta!!!', autores[3], [categorias[1]], callback);
     },
     function (callback) {
       addManga
@@ -164,11 +162,11 @@ function addMangas(cb) {
     },
     function (callback) {
       addManga
-        ('Test manga 1', 'Summary of test manga 1', autors[4], [categorias[0], categorias[3]], callback)
+        ('Test manga 1', 'Summary of test manga 1', autores[4], [categorias[0], categorias[3]], callback)
     },
     function (callback) {
       addManga
-        ('Test manga 2', 'Summary of test manga 2', autors[2], [categorias[2], categorias[3], categorias[0], categorias[4]], callback)
+        ('Test manga 2', 'Summary of test manga 2', autores[2], [categorias[2], categorias[3], categorias[0], categorias[4]], callback)
     }
   ],
     // optional callback
