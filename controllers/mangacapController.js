@@ -1,4 +1,4 @@
-var mangaCap = require('../models/mangacap');
+var mangacap = require('../models/mangacap');
 
 // exibe lista com todos caps 
 exports.mangacap_list = function(req, res) {
