@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var testsRouter = require('./routes/tests');
 var wikiRouter = require('./routes/wiki');
 var catalogoRouter = require('./routes/catalogo');
 
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // finalmente indica os modulos de rotas dos requests
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/test', testsRouter);
 app.use('/wiki', wikiRouter);
 app.use('/catalogo', catalogoRouter);
 
