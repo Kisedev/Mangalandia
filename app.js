@@ -15,7 +15,7 @@ var app = express();
 var mongoose = require('mongoose');
 const mongoDB = "mongodb+srv://mangadmin:mangasword@kisesp-ui1cx.gcp.mongodb.net/test?retryWrites=true&w=majority"
 
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
