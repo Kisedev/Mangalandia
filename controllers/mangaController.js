@@ -1,7 +1,28 @@
 var manga = require('../models/manga');
+var autor = require('../models/autor');
+var categoria = require('../models/categoria');
+var mangacap = require('../models/mangacap');
+
+var async = require('async');
 
 exports.index = function(req, res) {
-    res.send('TAMO TRABALHANDO AINDA: Casa do Mangá');
+    async.parallel({
+        manga_count: function(callback) {
+            manga.countDocuments({}, callback)
+        },
+        autor_count: function(callback) {
+            autor.countDocuments({}, callback)
+        },
+        categoria_count: function(callback) {
+            categoria.countDocuments({}, callback)
+        },
+        mangacap_count: function(callback) {
+            mangacap.countDocuments({}, callback)
+        }
+    }, (err, results) => {
+            res.render('index', {title: 'Terra dos Mangás', error: err, data: results});
+        }
+    )
 }
 
 exports.manga_list = function(req, res) {
