@@ -1,7 +1,39 @@
 doctype html
-html
+html(lang='pt-br')
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    link(rel='stylesheet' href='/stylesheets/style.css')
   body
-    block content
+    div(class='container-fluid')
+      div(class='row')
+        div(class='col-sm-2')
+          block sidebar
+            ul(class='sidebar-nav')
+              li 
+                a(href='/catalogo') Homer
+              li 
+                a(href='/catalogo/mangas') Todos mangás
+              li 
+                a(href='/catalogo/autores') Todos autores
+              li 
+                a(href='/catalogo/categorias') Todas categorias
+              li 
+                a(href='/catalogo/capitulos') Todos capítulos
+              li 
+                hr
+              li 
+                a(href='/catalogo/autor/adicionar') Adicionar novo autor
+              li 
+                a(href='/catalogo/categoria/adicionar') Adicionar nova categoria
+              li 
+                a(href='/catalogo/manga/adicionar') Adicionar novo mangá
+              li 
+                a(href='/catalogo/capitulo/adicionar') Adicionar novo capítulo
+
+        div(class='col-sm-10')
+          block content
