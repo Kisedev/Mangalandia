@@ -10,7 +10,7 @@ const categoriaSchema = new Schema({
 // Virtual para url 
 categoriaSchema
 .virtual('url')
-.get(() => {
+.get(function () {
     return `/catalogo/categoria/${this._id}`;
 });
 

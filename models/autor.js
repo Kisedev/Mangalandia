@@ -11,7 +11,7 @@ const autorSchema = new Schema({
 // Virtual para nome completo
 autorSchema
 .virtual('nome')
-.get(() => {
+.get(function () {
     // se nao tiver um dos nomes entao retorna vazio o nome 
     if(!this.primeiro_nome || !this.sobrenome) {
         return "";
@@ -22,14 +22,14 @@ autorSchema
 // Virtual para tempo vivido
 autorSchema
 .virtual('longevidade')
-.get(() => {
+.get(function () {
     return (this.falecimento.getYear() - this.nascimento.getYear()).toString();
 });
 
 // Virtual para URL
 autorSchema
 .virtual('url')
-.get(() => {
+.get(function () {
     return `/catalogo/autor/${this._id}`;
 });
 

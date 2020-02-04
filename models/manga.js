@@ -13,14 +13,14 @@ const mangaSchema = new Schema({
 // Virtual para URL 
 mangaSchema
 .virtual('url')
-.get(() => {
+.get(function () {
     return `/catalogo/manga/${this._id}`
 });
 
 // Virtual para estrelas
 mangaSchema
 .virtual('estrelas')
-.get(() => {
+.get(function () {
     let media = Math.round(this.avaliacao.reduce((soma, valor) => soma + valor, 0) / this.avaliacao.length);
     if (isNaN(media)) {
         return;

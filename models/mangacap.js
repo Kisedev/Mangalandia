@@ -12,7 +12,7 @@ const capituloSchema = new Schema({
 // Virtual para titulo
 capituloSchema
 .virtual('titulo')
-.get(() => {
+.get(function () {
     if (this.nome) {
         return `-${this.nome}`;
     }
@@ -22,7 +22,7 @@ capituloSchema
 // Virtual para url
 capituloSchema
 .virtual('url')
-.get(() => {
+.get(function () {
     return `/catalogo/manga/${this.manga}/${this.num}`;
 });
 
