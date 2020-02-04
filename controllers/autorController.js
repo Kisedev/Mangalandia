@@ -1,6 +1,6 @@
 var Autor = require('../models/autor');
 
-exports.autor_list = function(req, res) {
+exports.autor_lista = function(req, res) {
     res.send('DX O HOMEM TRABAIA: lista de autores');
 };
 

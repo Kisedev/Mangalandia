@@ -1,6 +1,6 @@
 var Categoria = require('../models/categoria');
 
-exports.categoria_list = function(req, res) {
+exports.categoria_lista = function(req, res) {
     res.send('DX O HOMEM TRABAIA: lista de categorias');
 };
 

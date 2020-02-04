@@ -1,7 +1,7 @@
 var mangacap = require('../models/mangacap');
 
 // exibe lista com todos caps 
-exports.mangacap_list = function(req, res) {
+exports.mangacap_lista = function(req, res) {
     res.send('TAMO TRABALHANDO MEU CONSAGRADO: lista de capítulos');
 };
 
