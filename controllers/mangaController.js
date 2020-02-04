@@ -20,13 +20,18 @@ exports.index = function(req, res) {
             mangacap.countDocuments({}, callback)
         }
     }, (err, results) => {
-            res.render('index', {title: 'Terra dos Mangás', error: err, data: results});
+            res.render('index', {title: 'Mangalandia', error: err, data: results});
         }
     )
 }
 
-exports.manga_list = function(req, res) {
-    res.send('TAMO TRABALHANDO MEU CONSAGRADO: lista de mangás');
+exports.manga_lista = function(req, res, next) {
+    manga.find({}, 'titulo autor')
+    .populate('autor')
+    .exec((err, lista_mangas) => {
+        if(err) {return next(err)}
+        res.render('mangas', { title: 'Mangás', lista: lista_mangas });
+    })
 };
 
 exports.manga_info = function(req, res) {

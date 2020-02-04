@@ -23,7 +23,7 @@ router.post('/manga/:id/atualizar', manga_cntlr.manga_att_post)
 
 router.get('/manga/:id', manga_cntlr.manga_info)
 
-router.get('/mangas', manga_cntlr.manga_list)
+router.get('/mangas', manga_cntlr.manga_lista)
 
 // Rotas Capítulos
 
@@ -41,7 +41,7 @@ router.post('/mangacap/:id/atualizar', mangacap_cntlr.mangacap_att_post)
 
 router.get('/mangacap/:id', mangacap_cntlr.mangacap_info)
 
-router.get('/mangacaps', mangacap_cntlr.mangacap_list)
+router.get('/mangacaps', mangacap_cntlr.mangacap_lista)
 
 // Rotas Autores
 
@@ -59,7 +59,7 @@ router.post('/autor/:id/atualizar', autor_cntlr.autor_att_post)
 
 router.get('/autor/:id', autor_cntlr.autor_info)
 
-router.get('/autores', autor_cntlr.autor_list)
+router.get('/autores', autor_cntlr.autor_lista)
 
 // Rotas Categorias
 
@@ -77,6 +77,6 @@ router.post('/categoria/:id/atualizar', categoria_cntlr.categoria_att_post)
 
 router.get('/categoria/:id', categoria_cntlr.categoria_info)
 
-router.get('/categorias', categoria_cntlr.categoria_list)
+router.get('/categorias', categoria_cntlr.categoria_lista)
 
 module.exports = router;
