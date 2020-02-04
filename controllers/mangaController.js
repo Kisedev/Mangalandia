@@ -30,7 +30,7 @@ exports.manga_lista = function(req, res, next) {
     .populate('autor')
     .exec((err, lista_mangas) => {
         if(err) {return next(err)}
-        res.render('mangas', { title: 'Mangás', lista: lista_mangas });
+        res.render('mangas', { title: 'Mangás', lista_mangas });
     })
 };
 
