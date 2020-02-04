@@ -9,16 +9,6 @@ const capituloSchema = new Schema({
     nome: {type: String}
 });
 
-// Virtual para titulo
-capituloSchema
-.virtual('titulo')
-.get(function () {
-    if (this.nome) {
-        return `-${this.nome}`;
-    }
-    return `#${this.num}`;
-});
-
 // Virtual para url
 capituloSchema
 .virtual('url')

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h2= title
+
+    ul
+        each cap in lista_capitulos
+            li
+                a(href=cap.url) #{cap.manga.titulo}
+                if cap.nome
+                    |    #{'- ' + cap.nome}
+                else
+                    |    #{'#' + cap.num}                    
+        else
+            li Não encontrei nada (´･_･`)

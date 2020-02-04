@@ -38,10 +38,11 @@ router.post('/mangacap/:id/remover', mangacap_cntlr.mangacap_rm_post)
 router.get('/mangacap/:id/atualizar', mangacap_cntlr.mangacap_att_get)
 
 router.post('/mangacap/:id/atualizar', mangacap_cntlr.mangacap_att_post)
-
+// rota que deve abrir leitor
 router.get('/mangacap/:id', mangacap_cntlr.mangacap_info)
-
-router.get('/mangacaps', mangacap_cntlr.mangacap_lista)
+// *criar get para capitulos de um manga especifico
+// todos capitulos de mangas 
+router.get('/capitulos', mangacap_cntlr.mangacap_lista)
 
 // Rotas Autores
 
