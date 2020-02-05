@@ -7,14 +7,17 @@ block content
                 //- ordena lista por titulo
                 - lista_mangas.sort((a,b) => {let txtA = a.titulo.toUpperCase(); let txtB = b.titulo.toUpperCase(); return (txtA < txtB) ? -1 : (txtA > txtB) ? 1 : 0;});
                 each manga in lista_mangas
-                    li
-                        a(href=manga.url) #{manga.titulo}
-                        |    (#{manga.autor.nome})
-                        each cat in manga.categoria
-                            span(class='categoria categoria-' + cat.nome)
-                            a(href=cat.url)|    #{cat.nome}
-                        if manga.sumario
-                            p #{manga.sumario}
+                    li(class="manga_c")
+                        img(src="https://images-na.ssl-images-amazon.com/images/I/81AVPbPbdtL.jpg")
+                        div(class="overlay")
+                        div(class="status")
+                            a(href=manga.url) #{manga.titulo}
+                            |    (#{manga.autor.nome})
+                            each cat in manga.categoria
+                                    span(class='categoria categoria-' + cat.nome)
+                                    a(href=cat.url)|    #{cat.nome}
+                            if manga.sumario
+                                    //p #{manga.sumario}
 
                 else
                     li Não encontrei nada (´･_･`)
