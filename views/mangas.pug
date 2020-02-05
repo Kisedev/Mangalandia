@@ -1,20 +1,22 @@
 extends layout
 
 block content
-    h2= title
+    div(class='header')
+        h1= title
+    div(class='main')
+            h2= title
+            ul
+                //- ordena lista por titulo
+                - lista_mangas.sort((a,b) => {let txtA = a.titulo.toUpperCase(); let txtB = b.titulo.toUpperCase(); return (txtA < txtB) ? -1 : (txtA > txtB) ? 1 : 0;});
+                each manga in lista_mangas
+                    li
+                        a(href=manga.url) #{manga.titulo}
+                        |    (#{manga.autor.nome})
+                        each cat in manga.categoria
+                            span(class='categoria categoria-' + cat.nome)
+                            a(href=cat.url)|    #{cat.nome}
+                        if manga.sumario
+                            p #{manga.sumario}
 
-    ul
-        //- ordena lista por titulo
-        - lista_mangas.sort((a,b) => {let txtA = a.titulo.toUpperCase(); let txtB = b.titulo.toUpperCase(); return (txtA < txtB) ? -1 : (txtA > txtB) ? 1 : 0;});
-        each manga in lista_mangas
-            li
-                a(href=manga.url) #{manga.titulo}
-                |    (#{manga.autor.nome})
-                each cat in manga.categoria
-                    span(class='categoria categoria-' + cat.nome)
-                    a(href=cat.url)|    #{cat.nome}
-                if manga.sumario
-                    p #{manga.sumario}
-
-        else
-            li Não encontrei nada (´･_･`)
+                else
+                    li Não encontrei nada (´･_･`)

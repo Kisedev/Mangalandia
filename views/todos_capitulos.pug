@@ -1,16 +1,18 @@
 extends layout
 
 block content
+    div(class='header')
+        h1= title
     h2= title
-
-    ul
-        each cap in lista_capitulos
-            li
-                a(href=cap.url) #{cap.manga.titulo}
-                if cap.nome
-                    |    #{'- ' + cap.nome}
-                else
-                    |    #{'#' + cap.num}
-                span.lancamento    ( #{cap.data_formatada} )            
-        else
-            li Não encontrei nada (´･_･`)
+    div(class='main')
+        ul
+            each cap in lista_capitulos
+                li
+                    a(href=cap.url) #{cap.manga.titulo}
+                    if cap.nome
+                        |    #{'- ' + cap.nome}
+                    else
+                        |    #{'#' + cap.num}
+                    span.lancamento    ( #{cap.data_formatada} )            
+            else
+                li Não encontrei nada (´･_･`)

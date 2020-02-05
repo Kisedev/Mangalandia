@@ -1,18 +1,19 @@
 extends layout
 
 block content
-  h1= title
-  p Seja welcomido a #[em Mangalandia], um site simples de mangás desenvolvido com base no exemplo LocalLibrary da #[a(href='https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs') Mozilla Developer Network].
+  //- p Seja welcomido a #[em Mangalandia], um site simples de mangás desenvolvido com base no exemplo LocalLibrary da #[a(href='https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs') Mozilla Developer Network].
 
-  h2 Conteudo dinamico
-
+  div(class='header')
+      h1= title
+ 
   if error
     p Erro ao buscar dados.
   else
-    p A Mangalandia tem os seguintes numeros:
-
-    ul
-      li #[strong Mangás:] !{data.manga_count}
-      li #[strong Capítulos:] !{data.mangacap_count}
-      li #[strong Autores:] !{data.autor_count}
-      li #[strong Categorias:] !{data.categoria_count}
+    div(class='main')
+        h2 Conteudo dinamico
+        p A Mangalandia tem os seguintes numeros:
+        ul
+          li #[strong Mangás:] !{data.manga_count}
+          li #[strong Capítulos:] !{data.mangacap_count}
+          li #[strong Autores:] !{data.autor_count}
+          li #[strong Categorias:] !{data.categoria_count}

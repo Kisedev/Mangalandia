@@ -11,28 +11,26 @@ html(lang='pt-br')
   body
     div(class='container-fluid')
       div(class='row')
-        div(class='col-sm-2')
+        div(class='col link')
           block sidebar
             ul(class='sidebar-nav')
-              li 
+              li(class={"ativo": title == "Mangalandia"})
                 a(href='/catalogo') Homer
-              li 
+              li(class={"ativo": title == "Mangás"})
                 a(href='/catalogo/mangas') Todos mangás
-              li 
+              li(class={"ativo": title == "Todos autores"}) 
                 a(href='/catalogo/autores') Todos autores
-              li 
+              li(class={"ativo": title == "Todas categorias"}) 
                 a(href='/catalogo/categorias') Todas categorias
-              li 
+              li(class={"ativo": title == "Todos Capítulos"}) 
                 a(href='/catalogo/capitulos') Todos capítulos
-              li 
-                hr
-              li 
+              li(class={"ativo": title == "Adicionar novo autor"}) 
                 a(href='/catalogo/autor/adicionar') Adicionar novo autor
-              li 
+              li(class={"ativo": title == "Adicionar nova categoria"}) 
                 a(href='/catalogo/categoria/adicionar') Adicionar nova categoria
-              li 
+              li(class={"ativo": title == "Adicionar novo mangá"}) 
                 a(href='/catalogo/manga/adicionar') Adicionar novo mangá
-              li 
+              li(class={"ativo": title == "Adicionar novo capítulo"}) 
                 a(href='/catalogo/capitulo/adicionar') Adicionar novo capítulo
 
         div(class='col-sm-10')
