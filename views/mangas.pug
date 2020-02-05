@@ -2,7 +2,6 @@ extends layout
 
 block content
     div(class='main')
-            h2= title
             ul
                 //- ordena lista por titulo
                 - lista_mangas.sort((a,b) => {let txtA = a.titulo.toUpperCase(); let txtB = b.titulo.toUpperCase(); return (txtA < txtB) ? -1 : (txtA > txtB) ? 1 : 0;});

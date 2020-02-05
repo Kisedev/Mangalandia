@@ -86,16 +86,16 @@ a:focus{
 
 .manga_c{
   position: relative;
-  width: 200px;
-  height: 280px;
+  width: 150px;
+  height: 230px;
   background: #000;
   display: inline-grid;
-  margin-left: 10px;
+  margin-left: 30px;
   overflow: hidden;
   padding: 20px;
   left: -50px;
   padding-bottom: 40px;
-
+  top: 20px;
 }
 
 .manga_c img{
