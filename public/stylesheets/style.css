@@ -46,14 +46,15 @@ body {
   top: -40px;
   height: auto;
   z-index: 1000;
+  overflow: hidden;
 }
 
 .link li{
   display: inline-block;
   margin-left: 1px;
-  padding: 6px;
+  padding: 9px;
   position: relative;
-  top: 14px;
+  top: 17px;
   color: #fff;
   left: -4px;
 }
@@ -75,4 +76,9 @@ a:hover{
 .ativo{
   background: #1e1e1e;
   color: #fff;
+}
+
+a:focus{
+  color: #fff;
+  text-decoration: none;
 }
