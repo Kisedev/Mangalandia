@@ -10,6 +10,7 @@ block content
                 if cap.nome
                     |    #{'- ' + cap.nome}
                 else
-                    |    #{'#' + cap.num}                    
+                    |    #{'#' + cap.num}
+                span.lancamento    ( #{cap.data_formatada} )            
         else
             li Não encontrei nada (´･_･`)

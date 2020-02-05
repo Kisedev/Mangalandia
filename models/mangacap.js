@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var moment = require('moment');
 const Schema = mongoose.Schema;
 
 const capituloSchema = new Schema({
@@ -9,6 +10,20 @@ const capituloSchema = new Schema({
     nome: {type: String}
 });
 
+// Virtual para titulo
+capituloSchema
+.virtual('titulo')
+.get(function () {
+    if (this.nome) {
+        return `-${this.nome}`;
+    }
+    return `#${this.num}`;
+});
+capituloSchema
+.virtual('data_formatada')
+.get(function() {
+    return moment(this.lancamento).format('DD/MM/YYYY');
+})
 // Virtual para url
 capituloSchema
 .virtual('url')
