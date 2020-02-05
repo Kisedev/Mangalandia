@@ -19,7 +19,7 @@ body {
 .header {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 59px;
   background: var(--header);
   top: -20px;
   left: 0px;
@@ -27,7 +27,8 @@ body {
 }
 
 .header h1 {
-  padding: 20px;
+  padding: 19px 27px;
+  font-size: 22px;
 }
 
 .main {
@@ -43,9 +44,9 @@ body {
   position: relative;
   width: 100%;
   height: auto;
-  top: -40px;
+  top: -62px;
   height: auto;
-  z-index: 1000;
+  z-index: 1;
   overflow: hidden;
 }
 
