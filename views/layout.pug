@@ -15,24 +15,10 @@ html(lang='pt-br')
             h1= title
         div(class='col link')
           block sidebar
+          - var links = [{"link": "/catalogo", "title": "Mangalandia"},{"link": "/catalogo/mangas", "title": "Todos mangás"},{"link": "/catalogo/autores", "title": "Todos categorias"},{"link": "/catalogo/autores", "title": "Todos categorias"},{"link": "/catalogo/capitulos", "title": "Todos Capítulos"},{"link": "/catalogo/autor/adicionar", "title": "Adicionar novo autor"},{"link": "/catalogo/categoria/adicionar", "title": "Adicionar nova categoria"},{"link": "/catalogo/manga/adicionar", "title": "Adicionar novo manga"},{"link": "/catalogo/capitulo/adicionar", "title": "Adicionar novo capítulo"} ]
             ul(class='sidebar-nav')
-              li(class={"ativo": title == "Mangalandia"})
-                a(href='/catalogo') Homer
-              li(class={"ativo": title == "Mangás"})
-                a(href='/catalogo/mangas') Todos mangás
-              li(class={"ativo": title == "Todos autores"}) 
-                a(href='/catalogo/autores') Todos autores
-              li(class={"ativo": title == "Todas categorias"}) 
-                a(href='/catalogo/categorias') Todas categorias
-              li(class={"ativo": title == "Todos Capítulos"}) 
-                a(href='/catalogo/capitulos') Todos capítulos
-              li(class={"ativo": title == "Adicionar novo autor"}) 
-                a(href='/catalogo/autor/adicionar') Adicionar novo autor
-              li(class={"ativo": title == "Adicionar nova categoria"}) 
-                a(href='/catalogo/categoria/adicionar') Adicionar nova categoria
-              li(class={"ativo": title == "Adicionar novo mangá"}) 
-                a(href='/catalogo/manga/adicionar') Adicionar novo mangá
-              li(class={"ativo": title == "Adicionar novo capítulo"}) 
-                a(href='/catalogo/capitulo/adicionar') Adicionar novo capítulo
+              each val, index in links
+                li(class={"ativo": title == val.title})
+                  a(href=val.link) #{val.title}
 
         block content
