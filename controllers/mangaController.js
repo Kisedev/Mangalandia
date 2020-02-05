@@ -26,8 +26,8 @@ exports.index = function(req, res) {
 }
 
 exports.manga_lista = function(req, res, next) {
-    manga.find({}, 'titulo autor')
-    .populate('autor')
+    manga.find({}, '-capitulo')
+    .populate('autor categoria')
     .exec((err, lista_mangas) => {
         if(err) {return next(err)}
         res.render('mangas', { title: 'Mangás', lista_mangas });
