@@ -104,6 +104,7 @@ a:focus{
   position: absolute;
   z-index: 1;
   top: 0px;
+  left: 0px;
 }
 
 .manga_c .overlay{
@@ -112,6 +113,8 @@ a:focus{
   background: linear-gradient(0deg, rgba(28,28,28,1) 17%, rgba(0,0,0,0.6222864145658263) 60%, rgba(0,0,0,0.6446953781512605) 85%);
   position: absolute;
   z-index: 5;
+  top: 0px;
+  left: 0px;
 }
 
 .manga_c .status{
