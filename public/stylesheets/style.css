@@ -17,11 +17,11 @@ body {
 }
 
 .header {
-  position: fixed;
+  position: relative;
   width: 100%;
   height: auto;
   background: var(--header);
-  top: 0px;
+  top: -20px;
   left: 0px;
   z-index: 1000;
 }
@@ -31,7 +31,7 @@ body {
 }
 
 .main {
-  margin-top: 160px;
+  margin-top: 20px;
 }
 
 .col {
@@ -40,11 +40,11 @@ body {
 }
 
 .link {
-  position: fixed;
+  position: relative;
   width: 100%;
   height: auto;
-  top: 70px;
-  height: 71px;
+  top: -40px;
+  height: auto;
   z-index: 1000;
 }
 
