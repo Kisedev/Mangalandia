@@ -1,7 +1,12 @@
-var Autor = require('../models/autor');
+var autor = require('../models/autor');
 
 exports.autor_lista = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: lista de autores');
+    autor.find({})
+    .sort('sobrenome')
+    .exec((err, result) => {
+        if (err) { return next(err)};
+        res.render('autores', {title: 'Mangakás', autores: result})
+    })
 };
 
 // Pagina do autor

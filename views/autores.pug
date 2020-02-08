@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    .main
+        ul.mgk
+            each autor in autores
+                li.mgk-item
+                    a.item-link(href=autor.url) #{autor.nome}
+                    span.mgk-age #{autor.nasc}
+            else
+                li Não encontrei nada (´･_･`)
+    

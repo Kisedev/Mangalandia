@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
+var moment = require('moment');
+
 const Schema = mongoose.Schema;
 
 const autorSchema = new Schema({
-    primeiro_nome: {type: String, required: true, maxlength: 100},
-    sobrenome: {type: String, required: true, maxlength: 100},
+    primeiro_nome: {type: String, maxlength: 100},
+    sobrenome: {type: String, maxlength: 100},
     nascimento: {type: Date},
     falecimento: {type: Date}
 });
@@ -21,9 +23,9 @@ autorSchema
 
 // Virtual para tempo vivido
 autorSchema
-.virtual('longevidade')
+.virtual('nasc')
 .get(function () {
-    return (this.falecimento.getYear() - this.nascimento.getYear()).toString();
+    return this.nascimento ? moment(this.nascimento).format('DD/MM/YYYY') : "";
 });
 
 // Virtual para URL
