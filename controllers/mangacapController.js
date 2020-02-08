@@ -6,7 +6,7 @@ exports.mangacap_lista = function(req, res, next) {
     .populate('manga')
     .exec((err, lista_capitulos) => {
         if (err) {return next(err)};
-        res.render('todos_capitulos', { title: 'Todos Capítulos', lista_capitulos});
+        res.render('capitulos', { title: 'Todos Capítulos', lista_capitulos});
     })
 };
 
