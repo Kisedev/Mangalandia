@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    .main
+        ul.cat
+            each cat in categorias
+                li.cat-item
+                    a.item-link(href=cat.url) #{cat.nome}
+                    span.cat-age #{cat.classificacao}
+                    .cat-info
+                        p.cat-desc #{cat.descricao}
+            else
+                li Não encontrei nada (´･_･`)

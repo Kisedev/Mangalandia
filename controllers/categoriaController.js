@@ -1,7 +1,11 @@
-var Categoria = require('../models/categoria');
+var categoria = require('../models/categoria');
 
 exports.categoria_lista = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: lista de categorias');
+    categoria.find({})
+    .exec((err, result) => {
+        if (err) { return next(err) };
+        res.render('categorias', {title: 'Categorias & Gêneros', categorias: result})
+    })
 };
 
 exports.categoria_info = function(req, res) {

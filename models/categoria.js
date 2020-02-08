@@ -13,5 +13,6 @@ categoriaSchema
 .get(function () {
     return `/catalogo/categoria/${this._id}`;
 });
+// *criar Virtual para ordenar categoria primeiro depois genero (Shounen, Ação)
 
 module.exports = mongoose.model('Categoria', categoriaSchema);
