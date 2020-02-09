@@ -1,21 +1,14 @@
 doctype html
 html(lang='pt-br')
-  head
-    title= title
-    meta(charset='utf-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1')
-    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-    link(rel='stylesheet' href='/stylesheets/style.css')
+  include includes/head.pug
   body
     div(class='container-fluid')
       div(class='row')
         div(class='header')
-            h1= title
+          h1= title
         div(class='col link')
           block sidebar
-          - const links = [{"link": "/catalogo", "title": "Mangalandia"},{"link": "/catalogo/mangas", "title": "Todos mangás"},{"link": "/catalogo/autores", "title": "Todos categorias"},{"link": "/catalogo/autores", "title": "Todos categorias"},{"link": "/catalogo/capitulos", "title": "Todos Capítulos"},{"link": "/catalogo/autor/adicionar", "title": "Adicionar novo autor"},{"link": "/catalogo/categoria/adicionar", "title": "Adicionar nova categoria"},{"link": "/catalogo/manga/adicionar", "title": "Adicionar novo manga"},{"link": "/catalogo/capitulo/adicionar", "title": "Adicionar novo capítulo"} ]
+          - const links = [{"link": "/catalogo", "title": "Mangalandia"},{"link": "/catalogo/mangas", "title": "Todos mangás"},{"link": "/catalogo/autores", "title": "Todos autores"},{"link": "/catalogo/categorias", "title": "Todas categorias"},{"link": "/catalogo/capitulos", "title": "Todos Capítulos"},{"link": "/catalogo/autor/adicionar", "title": "Adicionar novo autor"},{"link": "/catalogo/categoria/adicionar", "title": "Adicionar nova categoria"},{"link": "/catalogo/manga/adicionar", "title": "Adicionar novo manga"},{"link": "/catalogo/capitulo/adicionar", "title": "Adicionar novo capítulo"} ]
             ul(class='sidebar-nav')
               each val, index in links
                 li(class={"ativo": title == val.title})
