@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect('/catalogo');
+  res.render('home', {title: 'Mangalandia'})
 });
 
 module.exports = router;
