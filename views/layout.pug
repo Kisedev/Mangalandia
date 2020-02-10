@@ -2,16 +2,28 @@ doctype html
 html(lang='pt-br')
   include includes/head.pug
   body
-    div(class='container-fluid')
-      div(class='row')
-        div(class='header')
-          h1= title
-        div(class='col link')
+    .container-sm
+      block top
+        header.top
+          .inner.py-3
+            h2.top-brand.mx-auto
+              a(href='/')
+                img(class='img-fluid' src='/images/logo-icon.png' alt='Mangalandia')
+            nav.nav.nav-top.justify-content-center
+              a(class='nav-link' href='/catalogo/autores') Mangakás
+              a(class='nav-link' href='/catalogo/mangas') Mangás
+              a(class='nav-link' href='/catalogo/categorias') Categorias
+      .row
+        .sidebar.col-sm-2
           block sidebar
-          - const links = [{"link": "/catalogo", "title": "Mangalandia"},{"link": "/catalogo/mangas", "title": "Todos mangás"},{"link": "/catalogo/autores", "title": "Todos autores"},{"link": "/catalogo/categorias", "title": "Todas categorias"},{"link": "/catalogo/capitulos", "title": "Todos Capítulos"},{"link": "/catalogo/autor/adicionar", "title": "Adicionar novo autor"},{"link": "/catalogo/categoria/adicionar", "title": "Adicionar nova categoria"},{"link": "/catalogo/manga/adicionar", "title": "Adicionar novo manga"},{"link": "/catalogo/capitulo/adicionar", "title": "Adicionar novo capítulo"} ]
-            ul(class='sidebar-nav')
-              each val, index in links
-                li(class={"ativo": title == val.title})
-                  a(href=val.link) #{val.title}
-
-        block content
+            ul.navbar.sidebar-nav
+              li
+                a(href="/catalogo/autor/adicionar") Adicionar Autor
+              hr
+              li
+                a(href="/catalogo/manga/adicionar") Adicionar Mangá
+              hr
+              li
+                a(href="/catalogo/categoria/adicionar") Adicionar Categoria
+        .main.col-sm-9.ml-auto.overflow-hidden
+          block content

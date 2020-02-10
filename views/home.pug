@@ -1,14 +1,18 @@
 doctype html
 html(lang='pt-br')
     include includes/head.pug
+    append head
+        link(rel='stylesheet' href='/stylesheets/home.css')
     body.text-center
         .cover-container.d-flex.flex-column.w-100.h-100.p-3.mx-auto
             header.top.mb-auto
                 .inner
-                    h3.top-brand Mangalandia
+                    h2.top-brand.mx-auto
+                        a(href='/')
+                            img(class='img-fluid' src='/images/logo-icon.png' alt='Mangalandia')
                     nav.nav.nav-top.justify-content-center
-                        a(class='nav-link active' href='#') Homer 
-                        a(class='nav-link' href='#') Sobre 
+                        a(class='nav-link active' href='#') Home
+                        a(class='nav-link' href='#') Sobre
                         a(class='nav-link' href='#') Contato
 
             main.inner.cover
@@ -16,8 +20,7 @@ html(lang='pt-br')
                 p.lead Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem totam maiores delectus sunt aperiam voluptas esse fugiat voluptatem! A tempore sed voluptatibus ullam ipsam explicabo, porro praesentium deleniti neque aut?
                 p.lead
                     a(class='btn btn-lg btn-secondary' href='/catalogo') Catalogo
-            
+
             footer.bot.mt-auto
                 .inner
                     p Todos saudem #[a(href='https://github.com/Kisedev') Kisedev]
-                
