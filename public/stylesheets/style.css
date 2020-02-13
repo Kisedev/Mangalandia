@@ -10,6 +10,24 @@ a:hover {
   color: #fff;
 }
 
+.btn-primary {
+  background-color: var(--indigo);
+  border-color: var(--indigo);
+}
+.btn-primary:hover {
+  background-color: var(--purple);
+  border-color: var(--indigo);
+}
+.btn-primary:focus {
+  background-color: var(--purple);
+  box-shadow: 0 0 0 .2rem rgba(111, 66, 193, .6);
+}
+.btn-primary:active {
+  background-color: hsl(263, 90%, 41%)!important;
+  border-color: var(--indigo)!important;
+  box-shadow: 0 0 0 .2rem rgba(111, 66, 193, .8)!important;
+}
+
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {

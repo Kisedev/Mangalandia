@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h2 #{title}
+    p.lead Criar Categoria/Gênero de mangás
+    form.card.p-2(method='POST' action='')
+        .form-group
+            label(for='nome') Categoria:
+            input#nome.form-control(type='text' placeholder='Fantasia, Ação ...' name='nome' value=(undefined===categoria ? '' : categoria.nome))
+        button.btn.btn-primary(type='submit') Enviar
+
+        if errors
+            ul
+                for error in errors
+                    li!= error.msg
