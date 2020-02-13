@@ -6,7 +6,7 @@ block content
     form.card.p-2(method='POST' action='')
         .form-group
             label(for='nome') Categoria:
-            input#nome.form-control(type='text' placeholder='Fantasia, Ação ...' name='nome' value=(undefined===categoria ? '' : categoria.nome))
+            input#nome.form-control(type='text' placeholder='Fantasia, Ação ...' name='nome' value=(categoria===undefined ? '' : categoria.nome), required='true')
         button.btn.btn-primary(type='submit') Enviar
 
         if errors

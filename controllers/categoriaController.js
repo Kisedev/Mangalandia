@@ -19,7 +19,7 @@ exports.categoria_add_get = function (req, res) {
 
 exports.categoria_add_post = [
     // lista de middlewares para executar assicronamente
-    validator.body('nome', 'Nome de categoria obrigatório').isLength({ min: 1 }).trim(),
+    validator.body('nome', 'O Nome deve ter pelo menos 3 caracteres').isLength({ min: 3 }).trim(),
     // valida campo nome do form
     validator.sanitizeBody('nome').escape(),
     // anti cross script attack de tags html ou cod js 
