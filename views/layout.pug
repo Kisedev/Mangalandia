@@ -2,12 +2,12 @@ doctype html
 html(lang='pt-br')
   include includes/head.pug
   body
-    .container-sm
+    .container-sm.d-flex.flex-column.w-100.h-100
       block top
         header.top
           .inner.py-3
             h2.top-brand.mx-auto
-              a(href='/')
+              a(href='/catalogo')
                 img(class='img-fluid' src='/images/logo-icon.png' alt='Mangalandia')
             nav.nav.nav-top.justify-content-center
               a(class='nav-link' href='/catalogo/autores') Mangakás
@@ -27,3 +27,6 @@ html(lang='pt-br')
                 a(href="/catalogo/categoria/adicionar") Adicionar Categoria
         .main.col-sm-9.ml-auto.overflow-hidden
           block content
+      footer.bot.mt-auto
+        .inner.text-center
+          p Follow #{'->'} #[a(href='https://github.com/Kisedev') Kisedev]
