@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h2 #{info.manga.titulo + ': ' + info.titulo}
+    
+    .row
+        .col-sm-12
+            h3 #{info.manga.titulo}
+            p #{info.manga.sumario}
+        .col-sm-8
+            a(href=info.url) #{info.nome}
+        .col-sm-4
+            span #{info.data_formatada}
+        .col-sm-4
+            span #{info.isbn}

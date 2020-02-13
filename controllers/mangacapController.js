@@ -11,7 +11,20 @@ exports.mangacap_lista = function(req, res, next) {
 };
 
 exports.mangacap_info = function(req, res) {
-    res.send('TAMO TRABALHANDO MEU CONSAGRADO: detalhes do capítulo: ' + req.params.id);
+    mangacap.findById(req.params.id)
+    .populate('manga')
+    .exec((err, cap) => {
+        // se der erro ao buscar
+        if (err) {return next(err)};
+        // se nao tiver encontrado ao ter buscado
+        if (!cap) {
+            var err = new Error('Capitulo nao encontrado');
+            err.status = 404;
+            return next(err);
+        }
+        // achou o cap
+        res.render('capitulo', {title: cap.titulo, info: cap});
+    })
 }
 
 exports.mangacap_add_get = function(req, res) {

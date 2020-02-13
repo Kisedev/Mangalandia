@@ -27,22 +27,25 @@ router.get('/mangas', manga_cntlr.manga_lista)
 
 // Rotas Capítulos
 
-router.get('/mangacap/adicionar', mangacap_cntlr.mangacap_add_get)
+router.get('/capitulo/adicionar', mangacap_cntlr.mangacap_add_get)
 
-router.post('/mangacap/adicionar', mangacap_cntlr.mangacap_add_post)
+router.post('/capitulo/adicionar', mangacap_cntlr.mangacap_add_post)
 
-router.get('/mangacap/:id/remover', mangacap_cntlr.mangacap_rm_get)
+router.get('/capitulo/:id/remover', mangacap_cntlr.mangacap_rm_get)
 
-router.post('/mangacap/:id/remover', mangacap_cntlr.mangacap_rm_post)
+router.post('/capitulo/:id/remover', mangacap_cntlr.mangacap_rm_post)
 
-router.get('/mangacap/:id/atualizar', mangacap_cntlr.mangacap_att_get)
+router.get('/capitulo/:id/atualizar', mangacap_cntlr.mangacap_att_get)
 
-router.post('/mangacap/:id/atualizar', mangacap_cntlr.mangacap_att_post)
-// rota que deve abrir leitor
-router.get('/mangacap/:id', mangacap_cntlr.mangacap_info)
-// *criar get para capitulos de um manga especifico
+router.post('/capitulo/:id/atualizar', mangacap_cntlr.mangacap_att_post)
+// rota que deve abrir leitor, mas por enquanto eh so informacoes do capitulo
+router.get('/capitulo/:id', mangacap_cntlr.mangacap_info)
 // todos capitulos de mangas 
 router.get('/capitulos', mangacap_cntlr.mangacap_lista)
+
+// Rota Leitor
+
+// *criar get para capitulos de um manga especifico
 
 // Rotas Autores
 
