@@ -1,43 +1,98 @@
-var autor = require('../models/autor');
+var autor = require("../models/autor");
+var manga = require("../models/manga");
+
+const async = require('async');
+const { body, validationResult } = require("express-validator/check");
+const { sanitizeBody } = require("express-validator/filter");
 
 exports.autor_lista = function(req, res) {
-    autor.find({})
-    .sort('sobrenome')
+  autor
+    .find({})
+    .populate('autor')
+    .sort([['sobrenome', 'ascending']])
     .exec((err, result) => {
-        if (err) { return next(err)};
-        res.render('autores', {title: 'Mangakás', autores: result})
-    })
+      if (err) {
+        return next(err);
+      }
+      res.render("autores", { title: "Mangakás", autores: result });
+    });
 };
 
 // Pagina do autor
 exports.autor_info = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: detalhes do autor : ' + req.params.id);
+  async.parallel({
+    autor: function(callback) {
+      autor.findById(req.params.id).exec(callback);
+    },
+    autor_mangas: function(callback) {
+      manga.find({ 'autor': req.params.id }, "titulo sumario").exec(callback);
+    }
+  }, function(err, results) {
+      if (err) {next(err)};
+      if (!results.autor) {
+          var err = new Error('Mangaká não encontrado');
+          err.status = 404;
+          return next(err);
+      }
+      res.render('autor', {title: 'Detalhes do Autor', autor: results.autor, autor_mangas: results.autor_mangas});
+  }
+  );
 };
 
 // Exibe form de criar autor via GET
 exports.autor_add_get = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: criar autor GET');
+  res.render('forms/autor', {title: 'Adicionar Mangaká'});
 };
 
-exports.autor_add_post = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: criar autor POST');
-};
+exports.autor_add_post = [
+  body('primeiro_nome').isLength({min: 3, max: 100}).trim().withMessage('Primeiro nome necessário (max 100 letras)')
+  .isAlphanumeric().withMessage('Não deve conter números'),
+  body('sobrenome').isLength({min: 3, max: 100}).trim().withMessage('Sobrenome é necessário (max 100 letras)')
+  .isAlphanumeric().withMessage('Não deve conter números'),
+  body('nascimento', 'Data de nascimento incorreta').optional({ checkFalsy: true }).isISO8601(),
+  body('falecimento', 'Data de falecimento incorreta').optional({ checkFalsy: true }).isISO8601(),
+
+  sanitizeBody('primeiro_nome').escape(),
+  sanitizeBody('sobrenome').escape(),
+  sanitizeBody('nascimento').toDate(),
+  sanitizeBody('falecimento').toDate(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty()) {
+      res.render('forms/autor', {title: 'Adicionar Mangaká', autor: req.body, errors: errors.array()});
+      return;
+    } else {
+      let mgk = new autor({
+        primeiro_nome: req.body.primeiro_nome,
+        sobrenome: req.body.sobrenome,
+        nascimento: req.body.nascimento,
+        falecimento: req.body.falecimento
+      });
+      mgk.save(function(err) {
+        if (err){ return next(err)}
+        res.redirect(mgk.url)
+      });
+    }
+  }
+];
 
 // Exibe form p deletar autor GET
 exports.autor_rm_get = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: remover autor GET');
+  res.send("DX O HOMEM TRABAIA: remover autor GET");
 };
 
 exports.autor_rm_post = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: remover autor POST');
+  res.send("DX O HOMEM TRABAIA: remover autor POST");
 };
 
 // Exibe form atualizar autor por GET
 exports.autor_att_get = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: atualizar autor GET');
+  res.send("DX O HOMEM TRABAIA: atualizar autor GET");
 };
 
 // Atualiza por POST
 exports.autor_att_post = function(req, res) {
-    res.send('DX O HOMEM TRABAIA: atualizar autor POST');
+  res.send("DX O HOMEM TRABAIA: atualizar autor POST");
 };

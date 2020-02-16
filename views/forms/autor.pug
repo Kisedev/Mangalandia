@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  h1=title
+
+  form.car.p-3(method='POST' action='')
+    .form-group
+      label(for='primeiro_nome') Nome:
+      input#primeiro_nome.form-control(type='text' placeholder='Primeiro nome (João) ultimo' name='primeiro_nome' required='true' value=(undefined===autor ? '' : autor.primeiro_nome) )
+      label(for='family_name') Sobrenome:
+      input#sobrenome.form-control(type='text' placeholder='Sobrenome (Silva)' name='sobrenome' required='true' value=(undefined===autor ? '' : autor.sobrenome))
+    div.form-group
+      label(for='nascimento') Data de nascimento:
+      input#nascimento.form-control(type='date' placeholder='dd/mm/aaaa' name='nascimento' value=(undefined===autor ? '' : autor.nascimento) )
+    button.btn.btn-primary(type='submit') Enviar
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

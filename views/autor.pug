@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h2= autor.nome
+    p #{autor.nasc}
+
+    div.ml-3.mt-3
+        h4 Mangás
+
+        dl
+            each manga in autor_mangas
+                dt
+                    a(href=manga.url) #{manga.titulo}
+                dd  #{manga.sumario}
+            
+            else
+                p.lead Não encontrei nenhum mangá ¯\_(ツ)_/¯
