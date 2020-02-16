@@ -1,9 +1,9 @@
-extends layout
+extends ../layout
 
 block content
-    h2 #{title}
+    h2= title
     p.lead Criar Categoria/Gênero de mangás
-    form.card.p-2(method='POST' action='')
+    form.card.p-3(method='POST' action='')
         .form-group
             label(for='nome') Categoria:
             input#nome.form-control(type='text' placeholder='Fantasia, Ação ...' name='nome' value=(categoria===undefined ? '' : categoria.nome), required='true')

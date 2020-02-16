@@ -14,7 +14,7 @@ exports.categoria_info = function (req, res) {
 };
 
 exports.categoria_add_get = function (req, res) {
-    res.render('categoria_form', { title: 'Adicionar Categoria' })
+    res.render('forms/categoria', { title: 'Adicionar Categoria' })
 };
 
 exports.categoria_add_post = [
@@ -32,7 +32,7 @@ exports.categoria_add_post = [
 
         if (!errors.isEmpty()) {
             // ha erros ent renderiza novamente com os dados e alerta 
-            res.render('categoria_form', { title: 'Adicionar Categoria', categoria: cat, errors: errors.array() });
+            res.render('forms/categoria', { title: 'Adicionar Categoria', categoria: cat, errors: errors.array() });
             return;
         } else {
             // os dados estao corretos
