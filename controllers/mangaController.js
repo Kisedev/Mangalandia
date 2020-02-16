@@ -82,7 +82,7 @@ exports.manga_add_get = function(req, res, next) {
       if (err) {
         return next(err);
       }
-      res.render("forms/manga_form", {
+      res.render("forms/manga", {
         titulo: "Adicionar Mangá",
         autores: results.autores,
         categorias: results.categorias
@@ -91,9 +91,77 @@ exports.manga_add_get = function(req, res, next) {
   );
 };
 
-exports.manga_add_post = function(req, res) {
-  res.send("TAMO TRABALHANDO MEU CONSAGRADO: adicionar mangá por POST");
-};
+exports.manga_add_post = [
+  (req, res, next) => {
+    if (!(req.body.categoria instanceof Array)) {
+      if (typeof req.body.categoria === "undefined") req.body.categoria = [];
+      else req.body.categoria = new Array(req.body.categoria);
+    }
+    next();
+  },
+
+  body("titulo", "Titulo não pode estar vazio.")
+    .isLength({ min: 1 })
+    .trim(),
+  body("autor", "Autor não pode estar vazio.")
+    .isLength({ min: 1 })
+    .trim(),
+  body("sumario", "Sumario não deve estar vazio.")
+    .isLength({ min: 1 })
+    .trim(),
+
+  sanitizeBody("*").escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    let novo_manga = new manga({
+      titulo: req.body.titulo,
+      sumario: req.body.sumario,
+      autor: req.body.autor,
+      categoria: req.body.categoria,
+    });
+
+    if (!errors.isEmpty()) {
+      async.parallel(
+        {
+          autores: function(callback) {
+            autor.find(callback);
+          },
+          categorias: function(callback) {
+            categoria.find(callback);
+          }
+        },
+        function(err, results) {
+          if (err) {
+            return next(err);
+          }
+
+          for (let i = 0; i < results.categorias.length; i++) {
+            if (novo_manga.categoria.indexOf(results.categorias[i]._id) > -1) {
+              results.categorias[i].checked = "true";
+            }
+          }
+          res.render("forms/manga", {
+            titulo: "Adicionar Mangá",
+            autores: results.autores,
+            categorias: results.categorias,
+            manga: novo_manga,
+            errors: errors.array()
+          });
+        }
+      );
+      return;
+    } else {
+        novo_manga.save(function(err) {
+        if (err) {
+          return next(err);
+        }
+        res.redirect(novo_manga.url);
+      });
+    }
+  }
+];
 
 exports.manga_rm_get = function(req, res) {
   res.send("TAMO TRABALHANDO MEU CONSAGRADO: remover mangá por GET");
