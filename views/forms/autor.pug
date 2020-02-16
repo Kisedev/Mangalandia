@@ -1,9 +1,9 @@
 extends ../layout
 
 block content
-  h1=title
-
-  form.car.p-3(method='POST' action='')
+  h2=title
+  p.lead Mangaká/Autor
+  form.card.p-3(method='POST' action='')
     .form-group
       label(for='primeiro_nome') Nome:
       input#primeiro_nome.form-control(type='text' placeholder='Primeiro nome (João) ultimo' name='primeiro_nome' required='true' value=(undefined===autor ? '' : autor.primeiro_nome) )
