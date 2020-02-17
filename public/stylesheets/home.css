@@ -1,7 +1,10 @@
 body {
   color: #fff;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+  background-image: url(../images/manga-store.jpg);
+  background-position: center;
+  background-size: cover;
 }
 @media (min-width: 48em) {
   .top-brand {
@@ -10,21 +13,30 @@ body {
   .nav-top {
     float: right;
   }
+  .nav-top .nav-link {
+    border-bottom: 0.2rem solid transparent;
+    border-bottom-right-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+  }
+  .nav-top .nav-link:hover,
+  .nav-top .nav-link:focus {
+    border-bottom-color: inherit;
+  }
 }
 .cover-container {
   max-width: 42em;
 }
-
 .cover {
   padding: 0 1.5rem;
 }
 .cover .btn-lg {
-  padding: .75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   font-weight: 700;
+}
+.cover-text {
+  background-color: rgba(0, 0, 0, 0.45);
 }
 .top {
   margin-bottom: 2rem;
-}
-.nav-top .nav-link + .nav-link {
-  margin-left: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
 }
