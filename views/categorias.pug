@@ -1,13 +1,14 @@
 extends layout
 
 block content
-    h3= title
-    .list-group
-        each cat in categorias
-            a(href=cat.url).list-group-item.list-group-item-action
-                .d-flex.justify-content-between.align-items-center
-                    h5.mb-1= cat.nome
-                    span.badge.badge-primary.badge-pill= cat.classificacao
-                p.mb-1= cat.descricao
-        else
-            li Não encontrei nada (´･_･`)
+    .main
+        h3= title
+        .list-group
+            each cat in categorias
+                a(href=cat.url).list-group-item.list-group-item-action
+                    .d-flex.justify-content-between.align-items-center
+                        h5.mb-1= cat.nome
+                        span.badge.badge-primary.badge-pill= cat.classificacao
+                    p.mb-1= cat.descricao
+            else
+                li Não encontrei nada (´･_･`)

@@ -1,19 +1,20 @@
 extends layout
 
 block content
-    .row.row-cols-2.row-cols-sm-3.row-cols-md-4.mangas.bg-light
-        //- ordena lista por titulo
-        - lista_mangas.sort((a,b) => {let txtA = a.titulo.toUpperCase(); let txtB = b.titulo.toUpperCase(); return (txtA < txtB) ? -1 : (txtA > txtB) ? 1 : 0;});
-        each manga in lista_mangas
-            .card.manga
-                .media
-                    img.img-fluid.rounded.card-img-top(src="https://placewaifu.com/image/200/300" alt=manga.titulo)
-                    .media-body.ml-2
-                        each cat in manga.categoria
-                            a.badge.badge-dark.manga-cat.mr-2.my-1(href=cat.url) #{cat.nome}
-                    span.badge.badge-info.manga-aut= manga.autor.nome
-                .card-body.text-center.py-1
-                    .card-title.manga-title= manga.titulo
+    .main
+        .row.row-cols-2.row-cols-sm-3.row-cols-md-4.mangas.bg-light
+            //- ordena lista por titulo
+            - lista_mangas.sort((a,b) => {let txtA = a.titulo.toUpperCase(); let txtB = b.titulo.toUpperCase(); return (txtA < txtB) ? -1 : (txtA > txtB) ? 1 : 0;});
+            each manga in lista_mangas
+                .card.manga
+                    .media
+                        img.img-fluid.rounded.card-img-top(src="https://placewaifu.com/image/200/300" alt=manga.titulo)
+                        .media-body.ml-2
+                            each cat in manga.categoria
+                                a.badge.badge-dark.manga-cat.mr-2.my-1(href=cat.url) #{cat.nome}
+                        span.badge.badge-info.manga-aut= manga.autor.nome
+                    .card-body.text-center.py-1
+                        .card-title.manga-title= manga.titulo
 
-        else
-            li Não encontrei nada (´･_･`)
+            else
+                li Não encontrei nada (´･_･`)

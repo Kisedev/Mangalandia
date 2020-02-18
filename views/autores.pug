@@ -1,25 +1,26 @@
 extends layout
 
 block content
-    h3= title
-    table.table.table-striped
-        thead
-            tr
-                th(scope='col') Nome
-                th(scope='col') Sobrenome
-                th(scope='col') Nascimento
-                th(scope='col') Falecimento
-        
-        tbody
-            each autor in autores
+    .main
+        h3= title
+        table.table.table-striped
+            thead
                 tr
-                    th(scope='row')
-                        a(href=autor.url)=autor.primeiro_nome
-                    td
-                        a(href=autor.url)=autor.sobrenome
-                    td= autor.nascimento
-                    td= autor.falecimento
-            else
-                tr
-                    th(scope='row') Não encontrei nada (´･_･`)
+                    th(scope='col') Nome
+                    th(scope='col') Sobrenome
+                    th(scope='col') Nascimento
+                    th(scope='col') Falecimento
+            
+            tbody
+                each autor in autores
+                    tr
+                        th(scope='row')
+                            a(href=autor.url)=autor.primeiro_nome
+                        td
+                            a(href=autor.url)=autor.sobrenome
+                        td= autor.nascimento
+                        td= autor.falecimento
+                else
+                    tr
+                        th(scope='row') Não encontrei nada (´･_･`)
     
