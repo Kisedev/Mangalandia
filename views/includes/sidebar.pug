@@ -1,0 +1,12 @@
+mixin item(url, nome)
+    a.list-group-item.list-group-item-action(href=url)
+        img(src='icons/plus.svg' title='Add')
+        | #{nome}
+block sidebar
+    .list-group.m-0
+        button.list-group-item.list-group-item.active(type='button' data-toggle='collapse' data-target='#add' aria-expanded='false' aria-controls='add') Adicionar
+        #add.collapse
+            +item('/catalogo/manga/adicionar', 'Mangá')
+            +item('/catalogo/autor/adicionar', 'Autor')
+            +item('/catalogo/categoria/adicionar', 'Categoria')
+            +item('/catalogo/capitulo/adicionar', 'Capítulo')

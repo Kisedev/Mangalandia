@@ -15,16 +15,7 @@ html(lang='pt-br')
               a.nav-link(href='/catalogo/categorias') Categorias
       .row
         .sidebar.col-sm-3.col-lg-2.align-self-start.py-2.mx-2
-          block sidebar
-            ul.m-0.list-group
-              li.list-group-item
-                a(href="/catalogo/autor/adicionar") Adicionar Autor
-              li.list-group-item
-                a(href="/catalogo/manga/adicionar") Adicionar Mangá
-              li.list-group-item
-                a(href="/catalogo/categoria/adicionar") Adicionar Categoria
-              li.list-group-item
-                a(href="/catalogo/capitulo/adicionar") Adicionar Capítulo
+          include includes/sidebar.pug
         .col.p-0.overflow-hidden
           block content
       footer.bot.mt-auto
