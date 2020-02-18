@@ -83,7 +83,7 @@ exports.manga_add_get = function(req, res, next) {
         return next(err);
       }
       res.render("forms/manga", {
-        titulo: "Adicionar Mangá",
+        title: "Adicionar Mangá",
         autores: results.autores,
         categorias: results.categorias
       });
@@ -143,7 +143,7 @@ exports.manga_add_post = [
             }
           }
           res.render("forms/manga", {
-            titulo: "Adicionar Mangá",
+            title: "Adicionar Mangá",
             autores: results.autores,
             categorias: results.categorias,
             manga: novo_manga,

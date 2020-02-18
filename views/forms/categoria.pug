@@ -1,15 +1,16 @@
 extends ../layout
 
 block content
-    h2= title
-    p.lead Categoria/Gênero
-    form.card.p-3(method='POST' action='')
-        .form-group
-            label(for='nome') Categoria:
-            input#nome.form-control(type='text' placeholder='Fantasia, Ação ...' name='nome' value=(categoria===undefined ? '' : categoria.nome), required='true')
-        button.btn.btn-primary(type='submit') Enviar
+    .main
+        h2= title
+        p.lead Categoria/Gênero
+        form.card.p-3(method='POST' action='')
+            .form-group
+                label(for='nome') Categoria:
+                input#nome.form-control(type='text' placeholder='Fantasia, Ação ...' name='nome' value=(categoria===undefined ? '' : categoria.nome), required='true')
+            button.btn.btn-primary(type='submit') Enviar
 
-        if errors
-            ul
-                for error in errors
-                    li!= error.msg
+            if errors
+                ul
+                    for error in errors
+                        li!= error.msg

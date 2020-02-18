@@ -1,38 +1,39 @@
 extends ../layout
 
 block content
-    h2= title
+    .main
+        h2= title
 
-    form(method='POST' action='')
-        .form-group
-            label(for='manga') Mangá:
-            select#manga.form-control(type='select' placeholder='Selecione o mangá' name='manga' required)
-                - mangas_lista.sort((a, b) => {let textA = a.titulo.toUpperCase(); let textB = b.titulo.toUpperCase(); return (textA < textB ? 1 : 0)});
-                for manga in mangas_lista
-                    if capitulo
-                        option(value=manga._id selected=(capitulo.manga.toString()==manga._id ? 'selected' : false)) #{manga.titulo}
-                    else
-                        option(value=manga._id) #{manga.titulo}
+        form.card.p-3(method='POST' action='')
+            .form-group
+                label(for='manga') Mangá:
+                select#manga.form-control(type='select' placeholder='Selecione o mangá' name='manga' required)
+                    - mangas_lista.sort((a, b) => {let textA = a.titulo.toUpperCase(); let textB = b.titulo.toUpperCase(); return (textA < textB ? 1 : 0)});
+                    for manga in mangas_lista
+                        if capitulo
+                            option(value=manga._id selected=(capitulo.manga.toString()==manga._id ? 'selected' : false)) #{manga.titulo}
+                        else
+                            option(value=manga._id) #{manga.titulo}
+                
+            .form-group
+                label(for='isbn') ISBN:
+                input#isbn.form-control(type='text' placeholder='ISBN13' name='isbn' value=(undefined===capitulo ? '' : capitulo.isbn) required)
             
-        .form-group
-            label(for='isbn') ISBN:
-            input#isbn.form-control(type='text' placeholder='ISBN13' name='isbn' value=(undefined===capitulo ? '' : capitulo.isbn) required)
-        
-        .form-group
-            label(for='num') Número:
-            input#num.form-control(type='number' name='num' value=(undefined===capitulo ? '' : capitulo.num) min='1')
+            .form-group
+                label(for='num') Número:
+                input#num.form-control(type='number' name='num' value=(undefined===capitulo ? '' : capitulo.num) min='1')
 
-        .form-group
-            label(for='lancamento') Lançamento:
-            input#lancamento.form-control(type='date' name='lancamento' value=(undefined===capitulo ? '' : capitulo.lancamento))
-        
-        .form-group
-            label(for='nome') Nome:
-            input#nome.form-control(type='text' name='nome' placeholder='Título do capítulo' value=(undefined===capitulo ? '' : capitulo.nome))
+            .form-group
+                label(for='lancamento') Lançamento:
+                input#lancamento.form-control(type='date' name='lancamento' value=(undefined===capitulo ? '' : capitulo.lancamento))
+            
+            .form-group
+                label(for='nome') Nome:
+                input#nome.form-control(type='text' name='nome' placeholder='Título do capítulo' value=(undefined===capitulo ? '' : capitulo.nome))
 
-        button.btn.btn-primary(type='submit') Enviar
-    
-    if errors
-        ul
-            for error in errors
-                li!= error.msg
+            button.btn.btn-primary(type='submit') Enviar
+        
+        if errors
+            ul
+                for error in errors
+                    li!= error.msg

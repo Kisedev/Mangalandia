@@ -1,34 +1,35 @@
 extends ../layout
 
 block content
-    h2= title
+    .main
+        h2= title
 
-    form(method='POST' action='')
-        div.form-group
-            label(for='titulo') Título:
-            input#titulo.form-control(type='text' placeholder='Nome do mangá' name='titulo' required='true' value=(undefined===manga ? '' : manga.titulo) )
-        div.form-group
-            label(for='autor') Autor:
-            select#autor.form-control(type='select' placeholder='Selecione autor' name='autor' required='true' )
-                - autores.sort(function(a, b) {let textA = a.sobrenome.toUpperCase(); let textB = b.sobrenome.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
-                for autor in autores
-                    if manga
-                        option(value=autor._id selected=(autor._id.toString()==manga.autor ? 'selected' : false) ) #{autor.nome}
-                    else
-                        option(value=autor._id) #{autor.nome}
-        div.form-group
-            label(for='sumario') Sumário:
-            textarea#sumario.form-control(type='textarea' placeholder='Sumário' name='sumario' rows='3' required='true') #{undefined===manga ? '' : manga.sumario}
-        div.form-group
-            label Categoria:
-            div
-                for cat in categorias
-                    div(style='display: inline; padding-right:10px;')
-                        input.checkbox-input(type='checkbox' name='categoria', id=cat._id, value=cat._id, checked=cat.checked )
-                        label(for=cat._id) #{cat.nome}
-        button.btn.btn-primary(type='submit') Enviar
+        form.card.p-3(method='POST' action='')
+            div.form-group
+                label(for='titulo') Título:
+                input#titulo.form-control(type='text' placeholder='Nome do mangá' name='titulo' required='true' value=(undefined===manga ? '' : manga.titulo) )
+            div.form-group
+                label(for='autor') Autor:
+                select#autor.form-control(type='select' placeholder='Selecione autor' name='autor' required='true' )
+                    - autores.sort(function(a, b) {let textA = a.sobrenome.toUpperCase(); let textB = b.sobrenome.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+                    for autor in autores
+                        if manga
+                            option(value=autor._id selected=(autor._id.toString()==manga.autor ? 'selected' : false) ) #{autor.nome}
+                        else
+                            option(value=autor._id) #{autor.nome}
+            div.form-group
+                label(for='sumario') Sumário:
+                textarea#sumario.form-control(type='textarea' placeholder='Sumário' name='sumario' rows='3' required='true') #{undefined===manga ? '' : manga.sumario}
+            div.form-group
+                label Categoria:
+                div
+                    for cat in categorias
+                        div(style='display: inline; padding-right:10px;')
+                            input.checkbox-input(type='checkbox' name='categoria', id=cat._id, value=cat._id, checked=cat.checked )
+                            label(for=cat._id) #{cat.nome}
+            button.btn.btn-primary(type='submit') Enviar
 
-    if errors 
-        ul
-            for error in errors
-                li!= error.msg
+        if errors 
+            ul
+                for error in errors
+                    li!= error.msg
