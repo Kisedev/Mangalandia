@@ -79,12 +79,52 @@ exports.autor_add_post = [
 ];
 
 // Exibe form p deletar autor GET
-exports.autor_rm_get = function(req, res) {
-  res.send("DX O HOMEM TRABAIA: remover autor GET");
-};
+exports.autor_rm_get = function(req, res, next) {
+  async.parallel({
+    autor: function(callback) {
+      autor.findById(req.params.id)
+      .exec(callback);
+    },
+    autor_mangas: function(callback) {
+      manga.find({autor: req.params.id})
+      .exec(callback);
+    }
+  }, (err, results) => {
+    if(err) {return next(err)}
+    if(results.autor==null) {
+      res.redirect('/catalogo/autores');
+    }
 
-exports.autor_rm_post = function(req, res) {
-  res.send("DX O HOMEM TRABAIA: remover autor POST");
+    res.render('forms/autor_rm', {title: 'Remover Autor', autor: results.autor, autor_mangas: results.autor_mangas});
+  });
+}
+
+exports.autor_rm_post = function(req, res, next) {
+  async.parallel({
+    autor: function(callback) {
+      autor.findById(req.body.autor_id)
+      .exec(callback)
+    },
+    autor_mangas: function(callback) {
+      manga.find({autor: req.body.autor_id})
+      .exec(callback)
+    }
+  }, (err, results) => {
+    if(err) {return next(err)}
+    
+    if(results.autor_mangas > 0) {
+      res.render('forms/autor_rm', {title: 'Remover Autor', autor: results.autor, autor_mangas: results.autor_mangas})
+      return;
+    }
+
+    else {
+      autor.findByIdAndRemove(req.body.autor_id, function removerAutor(err) {
+        if (err) { return next(err)}
+        res.redirect('/catalogo/autores');
+      })
+    }
+  }
+  )
 };
 
 // Exibe form atualizar autor por GET
