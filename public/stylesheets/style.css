@@ -73,7 +73,10 @@ body {
   background: rgba(0, 0, 0, 0.3);
   color: var(--dark);
 }
-
+.main {
+  background-color: var(--light);
+  padding: 1rem;
+}
 #featured {
   height: 280px;
   overflow: hidden;
