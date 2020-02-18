@@ -1,12 +1,24 @@
 extends layout
 
 block content
-    .main
-        ul.mgk
+    table.table.table-striped
+        thead
+            tr
+                th(scope='col') Nome
+                th(scope='col') Sobrenome
+                th(scope='col') Nascimento
+                th(scope='col') Falecimento
+        
+        tbody
             each autor in autores
-                li.mgk-item
-                    a.item-link(href=autor.url) #{autor.nome}
-                    span.mgk-age #{autor.nasc}
+                tr
+                    th(scope='row')
+                        a(href=autor.url)=autor.primeiro_nome
+                    td
+                        a(href=autor.url)=autor.sobrenome
+                    td= autor.nascimento
+                    td= autor.falecimento
             else
-                li Não encontrei nada (´･_･`)
+                tr
+                    th(scope='row') Não encontrei nada (´･_･`)
     
