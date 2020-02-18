@@ -19,7 +19,7 @@ exports.index = function(req, res) {
       categoria_count: function(callback) {
         categoria.countDocuments({}, callback);
       },
-      mangacap_count: function(callback) {
+      capitulo_count: function(callback) {
         mangacap.countDocuments({}, callback);
       }
     },

@@ -2,14 +2,32 @@ extends layout
 
 block content
   //- p Seja welcomido a #[em Mangalandia], um site simples de mangás desenvolvido com base no exemplo LocalLibrary da #[a(href='https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs') Mozilla Developer Network].
-
   if error
-    p.lead Não encontrei nada (´･_･`)
+    p.lead Não foi possível carregar o conteúdo (´･_･`)
   else
-    h2 #{title}
-    p Nosso catalogo tem:
-    ul
-      li #[strong Mangás:] !{data.manga_count}
-      li #[strong Capítulos:] !{data.mangacap_count}
-      li #[strong Autores:] !{data.autor_count}
-      li #[strong Categorias:] !{data.categoria_count}
+    #featured.carousel.slide.carousel-fade(data-ride='carousel')
+      .carousel-inner
+        .carousel-item.active
+          img.d-block.w-100(src='images/japan-street.jpg' alt="rua no japão")
+        .carousel-item
+          img.d-block.w-100(src='images/manga-store.jpg' alt='loja de mangás')
+        .carousel-item
+          img.d-block.w-100(src='https://placewaifu.com/image/1200' alt='uma linda waifu')
+      a.carousel-control-prev(href='#featured' role='button' data-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.sr-only Previous
+      a.carousel-control-next(href='#featured' role='button' data-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.sr-only Next
+
+    .jumbotron
+      h2.display-4 Hello, otakus
+      p.lead Nosso acervo é pequeno ainda mas está crescendo.
+      ul.list-group.list-group-flush
+        li.list-group-item Mangás: !{data.manga_count}
+        li.list-group-item Categorias: !{data.categoria_count}
+        li.list-group-item Mangakás: !{data.autor_count}
+        li.list-group-item Capítulos: !{data.capitulo_count}
+      hr.my-4
+      p Seu mangá preferido ainda não está aqui, ou quer dar uma ótima sugestão?
+      a.btn.btn-info.btn-lg(href='#' role='button') Discord

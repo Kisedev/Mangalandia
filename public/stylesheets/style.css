@@ -74,9 +74,11 @@ body {
   color: var(--dark);
 }
 
-.main {
-  background: rgba(255, 255, 255, 0.7);
+#featured {
+  height: 280px;
+  overflow: hidden;
 }
+
 .manga .media {
   position: relative;
 }
