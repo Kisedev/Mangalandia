@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    .main
+        .card
+            .card-header.text-muted.
+                Categoria
+            .card-body
+                .d-flex.justify-content-between.align-items-center
+                    h5.card-title= categoria.nome
+                    span.badge.badge-dark.px-3.py-2(title='Capítulos') #{categoria_mangas.length}
+                    span.badge.badge-primary.badge-pill.px-3.py-2(title='Faixa Etária')= categoria.classificacao
+                p.card-text= categoria.descricao
+                each manga in categoria_mangas
+                    a.card-link(href=manga.url)= manga.titulo
+            .card-footer
+                .btn-group(role='group' aria-label='Categoria controles')
+                    a.btn.btn-outline-danger(href=categoria.url+'/remover') Remover
