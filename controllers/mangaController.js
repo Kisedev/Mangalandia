@@ -51,7 +51,7 @@ exports.manga_info = function(req, res, next) {
           .populate("categoria")
           .exec(callback);
       },
-      capitulo: function(callback) {
+      capitulos: function(callback) {
         mangacap.find({ manga: req.params.id }).exec(callback);
       }
     },
@@ -62,7 +62,7 @@ exports.manga_info = function(req, res, next) {
       res.render("manga", {
         title: results.manga.titulo,
         manga: results.manga,
-        capitulos: results.capitulo
+        capitulos: results.capitulos
       });
     }
   );

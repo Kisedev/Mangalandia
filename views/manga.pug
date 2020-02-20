@@ -12,6 +12,14 @@ block content
                             a(class='badge badge-dark mr-2' href=cat.url) #{cat.nome}
                 .author by #{manga.autor.nome}
                 p.summary= manga.sumario
+        
         hr
         .btn-group(role='group' aria-label='Mangá controles')
-                    a.btn.btn-outline-danger(href=manga.url+'/remover') Remover
+            a.btn.btn-outline-danger(href=manga.url+'/remover') Remover
+        
+        hr
+        ul.list-group
+            each cap in capitulos
+                li.list-group-item.d-flex.justify-content-between.align-items-center= cap.titulo
+                    a.btn.btn-outline-danger(href=cap.url+'/remover')
+                        img(src='/icons/trash.svg' title='Remover Capítulo')
