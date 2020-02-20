@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+    .main
+        h2 #{title}: #{categoria.nome}
+        small= categoria.classificacao
+
+        if categoria_mangas.length
+            .alert.alert-warning(role='alert')
+                p.alert-heading Remova os seguintes mangás antes de continuar:
+                hr
+                ul.group-list.group-list-flush.m-0
+                    each manga in categoria_mangas
+                        li.list-group-item.list-group-secondary.mb-2
+                            .card
+                                .card-body
+                                    a.card-title(href=categoria.url)= categoria.nome
+                                    p.card-text= categoria.descricao
+        
+        else
+            .alert.alert-danger(role='alert')
+                p.alert-heading Você realmente deseja remover essa Categoria?
+                    .card
+                        .card-body
+                            form(method='POST' action='')
+                                .form-group
+                                    input#cat_id.form-control(type='hidden', name='cat_id', required, value=categoria._id)
+                                button.btn.btn-primary(type='submit') Remover
