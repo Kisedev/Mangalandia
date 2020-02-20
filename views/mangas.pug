@@ -14,7 +14,7 @@ block content
                                 a.badge.badge-dark.manga-cat.mr-2.my-1(href=cat.url) #{cat.nome}
                         span.badge.badge-info.manga-aut= manga.autor.nome
                     .card-body.text-center.py-1
-                        .card-title.manga-title= manga.titulo
+                        a.card-title.manga-title(href=manga.url)= manga.titulo
 
             else
                 li Não encontrei nada (´･_･`)

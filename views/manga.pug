@@ -1,13 +1,17 @@
 extends layout
 
 block content
-    .media
-        img.mr-3(src='https://placewaifu.com/image/200/300' alt=manga.titulo)
-        .media-body
-            .row.px-3.align-items-center.justify-content-between
-                h4.mt-0= manga.titulo
-                .col
-                    each cat in manga.categoria
-                        a(class='badge badge-dark mr-2' href=cat.url) #{cat.nome}
-            .author by #{manga.autor.nome}
-            p.summary= manga.sumario
+    .main
+        .media
+            img.mr-3(src='https://placewaifu.com/image/200/300' alt=manga.titulo)
+            .media-body
+                .row.px-3.align-items-center.justify-content-between
+                    h4.mt-0= manga.titulo
+                    .col
+                        each cat in manga.categoria
+                            a(class='badge badge-dark mr-2' href=cat.url) #{cat.nome}
+                .author by #{manga.autor.nome}
+                p.summary= manga.sumario
+        hr
+        .btn-group(role='group' aria-label='Mangá controles')
+                    a.btn.btn-outline-danger(href=manga.url+'/remover') Remover

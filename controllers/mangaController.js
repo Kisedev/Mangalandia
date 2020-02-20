@@ -164,11 +164,49 @@ exports.manga_add_post = [
 ];
 
 exports.manga_rm_get = function(req, res) {
-  res.send("TAMO TRABALHANDO MEU CONSAGRADO: remover mangá por GET");
+  async.parallel({
+    manga: function(callback) {
+      manga.findById(req.params.id)
+      .populate('categoria')
+      .exec(callback)
+    },
+    manga_capitulos: function(callback) {
+      mangacap.find({'manga': req.params.id})
+      .exec(callback)
+    }
+  }, (err, results) => {
+    if(err) {return next(err)}
+    if(!results.manga) {
+      res.redirect('/catalogo/mangas');
+    }
+
+    res.render('forms/manga_rm', {title: 'Remover Mangá', manga: results.manga, manga_capitulos: results.manga_capitulos})
+  })
 };
 
 exports.manga_rm_post = function(req, res) {
-  res.send("TAMO TRABALHANDO MEU CONSAGRADO: remover mangá por POST");
+  async.parallel({
+    manga: function(callback) {
+      manga.findById(req.body.manga_id)
+      .populate('categoria')
+      .exec(callback)
+    },
+    manga_capitulos: function(callback) {
+      mangacap.find({'manga': req.body.manga_id})
+      .exec(callback)
+    }
+  }, (err, results) => {
+    if(err) {return next(err)}
+    if(results.manga_capitulos.length > 0) {
+      res.render('forms/manga_rm', {title: 'Remover Mangá', manga: results.manga, manga_capitulos: results.manga_capitulos})
+      return;
+    }
+
+    manga.findByIdAndRemove(req.body.manga_id, function removerManga(err) {
+      if(err) {return next(err)}
+      res.redirect('/catalogo/mangas');
+    })
+  })
 };
 
 exports.manga_att_get = function(req, res) {

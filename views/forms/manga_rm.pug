@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    .main
+        .card
+            .card-header.text-disabled.
+                Mangá
+            .card-body
+                h5.card-title= manga.titulo
+                ul.list-group.list-group-horizontal.mb-2
+                    each cat in manga.categoria
+                        li.list-group-item.list-group-item-dark.manga-cat= cat.nome
+                ul.card-text.list-group.list-group-flush
+                    each cap in manga_capitulos
+                        li.list-group-item.list-group-item-warning= cap.titulo
+                            small= cap.data_formatada
+                    else
+                        li.list-group-item.list-group-item-danger Você deseja realmente remover este Mangá?
+                            .card
+                                .card-body
+                                    form(method='POST' action='')
+                                        .form-group
+                                            input#manga_id.form-control(type='hidden', name='manga_id', required, value=manga._id)
+                                        button.btn.btn-primary(type='submit') Remover
