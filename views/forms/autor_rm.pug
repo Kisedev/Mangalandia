@@ -12,18 +12,18 @@ block content
                 hr
                 ul.list-group.list-group-flush.m-0
                     each manga in autor_mangas
-                        li.list-group-item.list-group-item-secondary
+                        li.list-group-item.list-group-item-secondary.mb-2
                             .card
                                 .card-body
-                                    a.card-title(href=manga.url)= manga.url
+                                    a.card-title(href=manga.url)= manga.titulo
                                     p.card-text= manga.sumario
         else
             .alert.alert-danger(role='alert')
-                .card
-                    .card-body
-                        .card-text Você realmente quer deletar esse Autor?
-                        form(method='POST' action='')
-                            .form-group
-                                input#autor_id.form-control(type='hidden', name='autor_id', required, value=autor._id)
-                            button.btn.btn-primary(type='submit') Remover
+                p.alert-heading Você realmente quer deletar esse Autor?
+                    .card
+                        .card-body
+                            form(method='POST' action='')
+                                .form-group
+                                    input#autor_id.form-control(type='hidden', name='autor_id', required, value=autor._id)
+                                button.btn.btn-primary(type='submit') Remover
         

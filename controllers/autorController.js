@@ -115,9 +115,7 @@ exports.autor_rm_post = function(req, res, next) {
     if(results.autor_mangas > 0) {
       res.render('forms/autor_rm', {title: 'Remover Autor', autor: results.autor, autor_mangas: results.autor_mangas})
       return;
-    }
-
-    else {
+    } else {
       autor.findByIdAndRemove(req.body.autor_id, function removerAutor(err) {
         if (err) { return next(err)}
         res.redirect('/catalogo/autores');

@@ -1,19 +1,22 @@
 extends layout
 
 block content
-    h2= autor.nome
-    p #{autor.nasc}
-    
-    hr
-    .btn-group(role='group' aria-label='Autor controles')
-        a.btn.btn-outline-danger(href=autor.url+'/remover') Remover
-
-    div.ml-3.mt-3
-        h4 Mangás
-        dl
-            each manga in autor_mangas
-                dt
-                    a(href=manga.url) #{manga.titulo}
-                dd  #{manga.sumario}
-            else
-                p.lead Não encontrei nenhum mangá ¯\_(ツ)_/¯
+    .main
+        .card
+            .card-header.
+                Mangaká
+            .card-body
+                .d-flex.align-items-center.justify-content-between
+                    h5.card-title= autor.nome
+                    small= autor.nasc
+                hr
+                .card-text
+                    each manga in autor_mangas
+                        details
+                            summary= manga.titulo
+                            p= manga.sumario
+                    else
+                        p.lead Este mangaká ainda não tem mangás ¯\_(ツ)_/¯
+            .card-footer
+                .btn-group(role='group' aria-label='Autor controles')
+                    a.btn.btn-outline-danger(href=autor.url+'/remover') Remover
