@@ -80,9 +80,6 @@ exports.categoria_rm_get = function (req, res) {
         categoria_mangas: function(callback) {
             manga.find({'categoria': req.params.id})
             .exec(callback)
-        },
-        mangas_count: function(callback) {
-            manga.countDocuments({'categoria': req.params.id});
         }
     }, (err, results) => {
         if (err) {next(err)}; 
@@ -100,13 +97,14 @@ exports.categoria_rm_post = function (req, res) {
             categoria.findById(req.body.cat_id)
             .exec(callback);
         },
-        manga_counts: function(callback) {
-            manga.countDocuments({'categoria': req.body.cat_id}, callback)
+        categoria_mangas: function(callback) {
+            manga.find({'categoria': req.body.cat_id})
+            .exec(callback);
         }
     }, (err, results) => {
         if (err) {return next(err)}
-        if(results.categoria_mangas > 0) {
-            res.render('forms/categoria_rm', {title: 'Remover Categoria', categoria: results.categoria, manga_counts: results.manga_counts})
+        if(results.categoria_mangas.length > 0) {
+            res.render('forms/categoria_rm', {title: 'Remover Categoria', categoria: results.categoria, categoria_mangas: results.categoria_mangas})
             return;
         } else {
             categoria.findByIdAndRemove(req.body.cat_id, function removerCategoria(err) {
