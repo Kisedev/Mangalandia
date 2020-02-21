@@ -28,7 +28,7 @@ capituloSchema
 capituloSchema
 .virtual('url')
 .get(function () {
-    return `/catalogo/capitulo/${this._id}`;
+    return `/catalogo/manga/${this.manga._id}/capitulo/${this._id}`;
 });
 
 module.exports = mongoose.model('MangaCap', capituloSchema);
