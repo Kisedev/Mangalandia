@@ -77,12 +77,29 @@ exports.mangacap_add_post = [
     }
 ]
 
-exports.mangacap_rm_get = function(req, res) {
-    res.send('TAMO TRABALHANDO MEU CONSAGRADO: remover capítulo por GET');
+exports.mangacap_rm_get = function(req, res, next) {
+    mangacap.findById(req.params.id)
+    .populate('manga')
+    .exec((err, cap) => {
+        if (err) {return next(err)}
+        if(!cap) {
+            res.redirect(`/catalogo/manga/${req.params.manga_id}/capitulos`)
+        }
+
+        res.render('forms/capitulo_rm', {title: 'Remover Capítulo', cap})
+    })
 }
 
-exports.mangacap_rm_post = function(req, res) {
-    res.send('TAMO TRABALHANDO MEU CONSAGRADO: remover capítulo por POST');
+exports.mangacap_rm_post = function(req, res, next) {
+    mangacap.findById(req.body.cap_id)
+    .populate('manga')
+    .exec((err, cap) => {
+        if(err) {return next(err)}
+        mangacap.findByIdAndRemove(req.body.cap_id, function removerCap(err) {
+            if(err) {return next(err)}
+            res.redirect(`/catalogo/manga/${req.params.manga_id}/capitulos`)
+        })
+    })
 }
 
 exports.mangacap_att_get = function(req, res) {

@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+    .main
+        .card
+            .card-header.
+                Capítulo
+            .card-body
+                h5.card-title #{cap.manga.titulo}: Capítulo #{cap.num}
+                p.card-text Você realmente deseja remover esse capítulo?
+            .card-footer
+                form(method='POST' action='')
+                    .form-group
+                        input#cap_id.form-control(type='hidden' name='cap_id' value=cap._id)
+                    button.btn.btn-outline-danger(type='submit') Remover
