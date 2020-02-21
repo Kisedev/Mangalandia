@@ -1,15 +1,15 @@
 extends layout
 
 block content
-    h2 #{info.manga.titulo + ': ' + info.titulo}
+    h5 #{capitulo.manga.titulo + ': ' + capitulo.titulo}
     
     .row
         .col-sm-12
-            h3 #{info.manga.titulo}
-            p #{info.manga.sumario}
+            h3 #{capitulo.manga.titulo}
+            p #{capitulo.manga.sumario}
         .col-sm-8
-            a(href=info.url) #{info.nome}
+            a(href=capitulo.url) #{capitulo.nome}
         .col-sm-4
-            span #{info.data_formatada}
+            span #{capitulo.data_formatada}
         .col-sm-4
-            span #{info.isbn}
+            span #{capitulo.isbn}

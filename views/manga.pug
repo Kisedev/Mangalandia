@@ -14,12 +14,22 @@ block content
                 p.summary= manga.sumario
         
         hr
-        .btn-group(role='group' aria-label='Mangá controles')
-            a.btn.btn-outline-danger(href=manga.url+'/remover') Remover
-        
+        .btn-toolbar(role='toolbar' aria-label='Controles Mangá')
+            .btn-group.mr-2(role='group' aria-label='Gerenciar Mangá')
+                a.btn.btn-outline-danger(href=manga.url+'/remover') Remover
+            .btn-group(role='group' aria-label='Gerenciar Capítulos')
+                a.btn.btn-outline-primary(href=`/catalogo/manga/${manga._id}/capitulo/adicionar`) Adicionar
+                    img(src='/icons/plus.svg' title='Adicionar')
+            
+
         hr
         ul.list-group
             each cap in capitulos
                 li.list-group-item.d-flex.justify-content-between.align-items-center= cap.titulo
-                    a.btn.btn-outline-danger(href=cap.url+'/remover')
-                        img(src='/icons/trash.svg' title='Remover Capítulo')
+                    .btn-toolbar(role='toolbar' aria-label='Menu de opções do Capítulo')
+                        .btn-group.mr-2(role='group' aria-label='Detalhes Capítulo')
+                            a.btn.btn-outline-info(href=cap.url)
+                                img(src='/icons/info.svg' title='Informações Capítulo')
+                        .btn-group(role='group' aria-label='Ações Capítulo')
+                            a.btn.btn-outline-danger(href=cap.url+'/remover')
+                                img(src='/icons/trash.svg' title='Remover Capítulo')
