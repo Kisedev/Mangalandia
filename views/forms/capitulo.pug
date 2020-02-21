@@ -6,14 +6,8 @@ block content
 
         form.card.p-3(method='POST' action='')
             .form-group
-                label(for='manga') Mangá:
-                select#manga.form-control(type='select' placeholder='Selecione o mangá' name='manga' required)
-                    - mangas_lista.sort((a, b) => {let textA = a.titulo.toUpperCase(); let textB = b.titulo.toUpperCase(); return (textA < textB ? 1 : 0)});
-                    for manga in mangas_lista
-                        if capitulo
-                            option(value=manga._id selected=(capitulo.manga.toString()==manga._id ? 'selected' : false)) #{manga.titulo}
-                        else
-                            option(value=manga._id) #{manga.titulo}
+                label(for='manga') Mangá: #{manga.titulo}
+                input#manga.form-control(type='hidden', name='manga', required, value=manga._id)
                 
             .form-group
                 label(for='isbn') ISBN:

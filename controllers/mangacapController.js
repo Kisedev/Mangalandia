@@ -1,20 +1,21 @@
-var mangacap = require('../models/mangacap');
 var manga = require('../models/manga');
+var mangacap = require('../models/mangacap');
 
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
 // exibe lista com todos caps 
 exports.mangacap_lista = function(req, res, next) {
-    mangacap.find()
-    .populate('manga')
-    .exec((err, lista_capitulos) => {
+    manga.findById(req.params.manga_id)
+    .populate('capitulo')
+    .exec((err, result) => {
         if (err) {return next(err)};
-        res.render('capitulos', { title: 'Todos Capítulos', lista_capitulos});
+        res.render('capitulos', { title: 'Todos Capítulos', capitulos: result.capitulo});
     })
 };
 
 exports.mangacap_info = function(req, res) {
+    // encontra capitulo diretamente e preenche dados do manga 
     mangacap.findById(req.params.id)
     .populate('manga')
     .exec((err, cap) => {
@@ -27,25 +28,23 @@ exports.mangacap_info = function(req, res) {
             return next(err);
         }
         // achou o cap
-        res.render('capitulo', {title: cap.titulo, info: cap});
+        res.render('capitulo', {title: cap.titulo, capitulo: cap});
     })
 }
 
 exports.mangacap_add_get = function(req, res, next) {
-    manga.find({}, 'titulo')
-    .exec(function(err, mangas) {
+    manga.findById(req.params.manga_id)
+    .exec(function(err, manga) {
         if (err) {next(err)}
-        res.render('forms/capitulo', {title: 'Adicionar Capítulo', mangas_lista: mangas})
+        res.render('forms/capitulo', {title: 'Adicionar Capítulo', manga})
     })
 }
 
 exports.mangacap_add_post = [
-    body('manga', 'Mangá é necessário').isLength({min: 1}).trim(),
     body('isbn', 'ISBN é necessário').isLength({min: 1}).trim(),
     body('num', 'Número do capítulo é necessário').isLength({min: 1}).trim(),
     body('lancamento', 'Data de lançamento inválida').optional({checkFalsy: true}).isISO8601(),
 
-    sanitizeBody('manga').escape(),
     sanitizeBody('isbn').escape(),
     sanitizeBody('num').escape(),
     sanitizeBody('lancamento').toDate(),
@@ -63,10 +62,10 @@ exports.mangacap_add_post = [
         });
 
         if(!errors.isEmpty()) {
-            manga.find({}, 'titulo')
-            .exec((err, mangas) => {
+            manga.findById(req.body.manga)
+            .exec((err, manga) => {
                 if (err) {return next(err)}
-                res.render('forms/capitulo', {title: 'Adicionar Mangá', mangas_lista: mangas, manga_selecionado: cap.manga._id, errors: errors.array(), capitulo: cap});
+                res.render('forms/capitulo', {title: 'Adicionar Mangá', errors: errors.array(), manga, capitulo: manga.capitulo});
             });
             return;
         } else {
