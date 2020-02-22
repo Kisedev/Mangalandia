@@ -8,9 +8,9 @@ const { sanitizeBody } = require('express-validator/filter');
 exports.mangacap_lista = function(req, res, next) {
     manga.findById(req.params.manga_id)
     .populate('capitulo')
-    .exec((err, result) => {
+    .exec((err, manga) => {
         if (err) {return next(err)};
-        res.render('capitulos', { title: 'Todos Capítulos', capitulos: result.capitulo});
+        res.render('capitulos', { title: 'Todos Capítulos', manga});
     })
 };
 
@@ -23,7 +23,7 @@ exports.mangacap_info = function(req, res) {
         if (err) {return next(err)};
         // se nao tiver encontrado ao ter buscado
         if (!cap) {
-            var err = new Error('Capitulo nao encontrado');
+            var err = new Error('Capítulo não encontrado');
             err.status = 404;
             return next(err);
         }

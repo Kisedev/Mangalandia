@@ -2,15 +2,11 @@ extends layout
 
 block content
     .main
-        h2= title
+        h5= title
             ul
-                each cap in lista_capitulos
+                each cap in manga.capitulo
                     li
-                        a(href=cap.url) #{cap.manga.titulo}
-                        if cap.nome
-                            |    #{'- ' + cap.nome}
-                        else
-                            |    #{'#' + cap.num}
-                        span.lancamento    ( #{cap.data_formatada} )            
+                        a(href=cap.url) #{manga.titulo}: #{cap.titulo}
+                        span.lancamento ( #{cap.data_formatada} )            
                 else
                     li Não encontrei nada (´･_･`)
