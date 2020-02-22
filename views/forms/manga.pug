@@ -14,7 +14,7 @@ block content
                     - autores.sort(function(a, b) {let textA = a.sobrenome.toUpperCase(); let textB = b.sobrenome.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
                     for autor in autores
                         if manga
-                            option(value=autor._id selected=(autor._id.toString()==manga.autor ? 'selected' : false) ) #{autor.nome}
+                            option(value=autor._id selected=(autor._id.toString()==manga.autor || autor._id.toString()==manga.autor) ? 'selected' : false) #{autor.nome}
                         else
                             option(value=autor._id) #{autor.nome}
             div.form-group

@@ -14,12 +14,11 @@ block content
                 p.summary= manga.sumario
         
         hr
-        .btn-toolbar(role='toolbar' aria-label='Controles Mangá')
+        .btn-toolbar(role='toolbar' aria-label='Controles Mangá').d-flex.justify-content-center
             .btn-group.mr-2(role='group' aria-label='Gerenciar Mangá')
                 a.btn.btn-outline-danger(href=manga.url+'/remover') Remover
-            .btn-group(role='group' aria-label='Gerenciar Capítulos')
-                a.btn.btn-outline-primary(href=`/catalogo/manga/${manga._id}/capitulo/adicionar`) Adicionar
-                    img(src='/icons/plus.svg' title='Adicionar')
+                a.btn.btn-outline-secondary(href=manga.url+'/atualizar') Editar
+                a.btn.btn-outline-primary(href=`/catalogo/manga/${manga._id}/capitulo/adicionar`) Adicionar Capítulo
             
 
         hr

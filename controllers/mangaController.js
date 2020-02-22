@@ -209,10 +209,93 @@ exports.manga_rm_post = function(req, res) {
   })
 };
 
-exports.manga_att_get = function(req, res) {
-  res.send("TAMO TRABALHANDO MEU CONSAGRADO: atualizar mangá por GET");
+exports.manga_att_get = function(req, res, next) {
+  async.parallel({
+    manga: function(callback) {
+      manga.findById(req.params.id)
+      .populate('categoria')
+      .populate('autor')
+      .exec(callback)
+    },
+    autores: function(callback) {
+      autor.find({})
+      .exec(callback)
+    },
+    categorias: function(callback) {
+      categoria.find({})
+      .exec(callback)
+    }
+  }, (err, results) => {
+    if(err) {return next(err)}
+    if(!results.manga) {
+      let err = new Error('Mangá não encontrado')
+      err.status = 404;
+      return next(err);
+    }
+
+    // adiciona checked para categorias que estao ligadas ao manga 
+    for(let iCat = 0; iCat < results.categorias.length; iCat++) {
+      for(let iMCat = 0; iMCat < results.manga.categoria.length; iMCat++) {
+        if(results.categorias[iCat]._id.toString()==results.manga.categoria[iMCat]._id.toString()) {
+          results.categorias[iCat].checked = 'true';
+        }
+      }
+    }
+    res.render('forms/manga', {title: 'Atualizar Mangá', manga: results.manga, autores: results.autores, categorias: results.categorias})
+  })
 };
 
-exports.manga_att_post = function(req, res) {
-  res.send("TAMO TRABALHANDO MEU CONSAGRADO: atualizar mangá por POST");
-};
+exports.manga_att_post = [
+  // checa se categorias é array 
+  (req, res, next) => {
+    if(!(req.body.categoria instanceof Array)) {
+      if(typeof req.body.categoria==='undefined')
+        req.body.categoria = [];
+      else
+        req.body.categoria = new Array(req.body.categoria);
+    }
+    next();
+  },
+
+  body('titulo', 'É preciso um Título').trim().isLength({min: 1}),
+  body('sumario', 'Forneça um Sumário').trim().isLength({min: 1}),
+  body('autor', 'É preciso do Autor').trim().isLength({min: 1}),
+  body('categoria', 'É preciso ao menos uma Categoria').isLength({min: 1}),
+
+  sanitizeBody('titulo').escape(),
+  sanitizeBody('sumario').escape(),
+  sanitizeBody('autor').escape(),
+  sanitizeBody('categoria.*').trim().escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    let manga_editado = new manga({
+      titulo: req.body.titulo,
+      sumario: req.body.sumario,
+      autor: req.body.autor,
+      categoria: req.body.categoria,
+      _id: req.params.id
+    })
+    if(!errors.isEmpty()) {
+      async.parallel({
+        autores: function(callback) {autor.find({}).exec(callback)},
+        categorias: function(callback) {categoria.find({}).exec(callback)}
+      }, (err, results) => {
+        if (err) { return next(err)}
+        for(let iCat = 0; iCat < results.categorias.length; i++) {
+          if(manga_editado.categoria.indexOf(results.categorias[iCat]) > -1) {
+            results.categorias[iCat].checked ='true';
+          }
+        }
+        res.render('forms/manga', {title: 'Atualizar Mangá', manga: manga_editado, autores: results.autores, categorias: results.categorias})
+      })
+    }
+    else {
+    // ta tudo certo bora finalmente atualizar isso aq
+      manga.findByIdAndUpdate(req.params.id, manga_editado, (err, manga_atualizado) => {
+        if(err) {return next(err)}
+        res.redirect(manga_atualizado.url);
+      })
+    }
+  }
+]
