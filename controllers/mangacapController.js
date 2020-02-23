@@ -14,7 +14,7 @@ exports.mangacap_lista = function(req, res, next) {
     })
 };
 
-exports.mangacap_info = function(req, res) {
+exports.mangacap_ler = function(req, res, next) {
     // encontra capitulo diretamente e preenche dados do manga 
     mangacap.findById(req.params.id)
     .populate('manga')
@@ -28,7 +28,7 @@ exports.mangacap_info = function(req, res) {
             return next(err);
         }
         // achou o cap
-        res.render('capitulo', {title: cap.titulo, capitulo: cap});
+        res.render('leitor', {title: cap.titulo, cap});
     })
 }
 
@@ -102,8 +102,8 @@ exports.mangacap_rm_post = function(req, res, next) {
     })
 }
 
-exports.mangacap_att_get = function(req, res) {
-    res.send('TAMO TRABALHANDO MEU CONSAGRADO: atualizar capítulo por GET');
+exports.mangacap_att_get = function(req, res, next) {
+    
 }
 
 exports.mangacap_att_post = function(req, res) {

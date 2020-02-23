@@ -39,7 +39,7 @@ router.get('/manga/:manga_id/capitulo/:id/atualizar', mangacap_cntlr.mangacap_at
 
 router.post('/manga/:manga_id/capitulo/:id/atualizar', mangacap_cntlr.mangacap_att_post)
 // rota que deve abrir leitor, mas por enquanto eh so informacoes do capitulo
-router.get('/manga/:manga_id/capitulo/:id', mangacap_cntlr.mangacap_info)
+router.get('/manga/:manga_id/capitulo/:id', mangacap_cntlr.mangacap_ler)
 // todos capitulos de mangas 
 router.get('/manga/:manga_id/capitulos', mangacap_cntlr.mangacap_lista)
 
