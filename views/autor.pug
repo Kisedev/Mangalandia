@@ -18,5 +18,7 @@ block content
                     else
                         p.lead Este mangaká ainda não tem mangás ¯\_(ツ)_/¯
             .card-footer
-                .btn-group(role='group' aria-label='Autor controles')
-                    a.btn.btn-outline-danger(href=autor.url+'/remover') Remover
+                .btn-toolbar(role='toolbar' aria-label='Opções do Autor')
+                    .btn-group(role='group' aria-label='Autor Controles')
+                        a.btn.btn-outline-secondary(href=autor.url+'/atualizar') Editar
+                        a.btn.btn-outline-danger(href=autor.url+'/remover') Remover
