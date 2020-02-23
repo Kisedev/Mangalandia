@@ -18,17 +18,17 @@ block content
             .btn-group.mr-2(role='group' aria-label='Gerenciar Mangá')
                 a.btn.btn-outline-danger(href=manga.url+'/remover') Remover
                 a.btn.btn-outline-secondary(href=manga.url+'/atualizar') Editar
-                a.btn.btn-outline-primary(href=`/catalogo/manga/${manga._id}/capitulo/adicionar`) Adicionar Capítulo
+                a.btn.btn-outline-info(href=`/catalogo/manga/${manga._id}/capitulo/adicionar`) Adicionar Capítulo
             
 
         hr
         ul.list-group
             each cap in capitulos
-                li.list-group-item.d-flex.justify-content-between.align-items-center= cap.titulo
-                    .btn-toolbar(role='toolbar' aria-label='Menu de opções do Capítulo')
-                        .btn-group.mr-2(role='group' aria-label='Detalhes Capítulo')
-                            a.btn.btn-outline-info(href=cap.url)
-                                img(src='/icons/info.svg' title='Informações Capítulo')
+                li.list-group-item.d-flex.justify-content-between.align-items-center ##{cap.num} #{cap.nome}
+                    .btn-toolbar(role='toolbar' aria-label='Opções do Capítulo')
+                        .btn-group.mr-2(role='group' aria-label='Leitor do Capítulo')
+                            a.btn.btn-outline-primary(href=cap.url)
+                                img(src='/icons/book.svg' title='Ler Capítulo')
                         .btn-group(role='group' aria-label='Ações Capítulo')
                             a.btn.btn-outline-danger(href=cap.url+'/remover')
                                 img(src='/icons/trash.svg' title='Remover Capítulo')
