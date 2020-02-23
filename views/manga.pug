@@ -23,6 +23,7 @@ block content
 
         hr
         ul.list-group
+            - capitulos.sort(function(x, y) {let numX = x.num; let numY = y.num; return (numX < numY) ? -1 : (numX > numY) ? 1 : 0;});
             each cap in capitulos
                 li.list-group-item.d-flex.justify-content-between.align-items-center ##{cap.num} #{cap.nome}
                     .btn-toolbar(role='toolbar' aria-label='Opções do Capítulo')
