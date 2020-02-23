@@ -1,0 +1,8 @@
+html,
+body {
+  position: relative;
+  color: var(--light)
+}
+.swiper-slider {
+    overflow: hidden;
+}

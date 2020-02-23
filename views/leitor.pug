@@ -1,0 +1,32 @@
+mixin pagina(numero)
+    .swiper-slide.d-flex.align-item-start.justify-content-center
+        .swiper-zoom-container
+            img(src='https://placewaifu.com/image/1280/720')
+            //- |   Capítulo ##{cap.num} - Página #{numero}
+doctype html
+html(lang='pt-br')
+    include includes/head.pug
+    append head
+        link(rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css")
+        link(rel='stylesheet' href='/stylesheets/leitor.css')
+        script(src='/scripts/leitor.js')
+    body.h-100
+        .swiper-container.w-100.h-100(dir='rtl')
+            //- inner pagina
+            .swiper-wrapper
+                +pagina(1)
+                +pagina(2)
+                +pagina(3)
+                +pagina(4)
+                +pagina(5)
+                +pagina(6)
+                +pagina(7)
+                +pagina(8)
+            //- paginacao
+            //- .swiper-pagination
+            //- botoes
+            //- .swiper-button-prev
+            //- .swiper-button-next
+            //- rolagem 
+            .swiper-scrollbar
+        script(src="https://unpkg.com/swiper/js/swiper.min.js")
