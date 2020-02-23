@@ -65,7 +65,7 @@ exports.mangacap_add_post = [
             manga.findById(req.body.manga)
             .exec((err, manga) => {
                 if (err) {return next(err)}
-                res.render('forms/capitulo', {title: 'Adicionar Mangá', errors: errors.array(), manga, capitulo: manga.capitulo});
+                res.render('forms/capitulo', {title: 'Adicionar Capítulo', errors: errors.array(), manga, capitulo: cap});
             });
             return;
         } else {
@@ -103,9 +103,49 @@ exports.mangacap_rm_post = function(req, res, next) {
 }
 
 exports.mangacap_att_get = function(req, res, next) {
-    
+    mangacap.findById(req.params.id)
+    .populate('manga')
+    .exec(function(err, result) {
+        if (err) {next(err)}
+        res.render('forms/capitulo', {title: 'Atualizar Capítulo', capitulo: result, manga: result.manga})
+    })
 }
 
-exports.mangacap_att_post = function(req, res) {
-    res.send('TAMO TRABALHANDO MEU CONSAGRADO: atualizar capítulo por POST');
-}
+exports.mangacap_att_post = [
+    body('isbn', 'ISBN é necessário').isLength({min: 1}).trim(),
+    body('num', 'Número do capítulo é necessário').isLength({min: 1}).trim(),
+    body('lancamento', 'Data de lançamento inválida').optional({checkFalsy: true}).isISO8601(),
+
+    sanitizeBody('isbn').escape(),
+    sanitizeBody('num').escape(),
+    sanitizeBody('lancamento').toDate(),
+    sanitizeBody('nome').trim().escape(),
+
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        let cap_editado = new mangacap({
+            manga: req.body.manga,
+            isbn: req.body.isbn,
+            num: req.body.num,
+            lancamento: req.body.lancamento,
+            nome: req.body.nome,
+            _id: req.params.id
+        });
+
+        if(!errors.isEmpty()) {
+            manga.findById(req.body.manga)
+            .exec((err, manga) => {
+                if (err) {return next(err)}
+                res.render('forms/capitulo', {title: 'Atualizar Capítulo', errors: errors.array(), manga, capitulo: cap_editado});
+            });
+            return;
+        } else {
+            mangacap.findByIdAndUpdate(req.params.id, cap_editado, (err, cap_atualizado) => {
+                if (err) {return next(err)}
+                res.redirect(cap_atualizado.url);
+            })
+        }
+    }
+
+]
