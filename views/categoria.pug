@@ -14,5 +14,7 @@ block content
                 each manga in categoria_mangas
                     a.card-link(href=manga.url)= manga.titulo
             .card-footer
-                .btn-group(role='group' aria-label='Categoria controles')
-                    a.btn.btn-outline-danger(href=categoria.url+'/remover') Remover
+                .btn-toolbar(role='toolbar' aria-label='Opções da Categoria')
+                    .btn-group(role='group' aria-label='Categoria controles')
+                        a.btn.btn-outline-secondary(href=categoria.url+'/atualizar') Editar
+                        a.btn.btn-outline-danger(href=categoria.url+'/remover') Remover
